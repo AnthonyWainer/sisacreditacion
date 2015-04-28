@@ -686,6 +686,15 @@ Inner Join evento ON evento.idevento = detalle_asistencia_alumno_tutoria.idevent
         $sth->execute();
         return $sth->fetchAll();
     }
+    function estadoSilAlu() {
+        $query = "SELECT CodigoCurso from carga_academica inner join silabus on 
+        carga_academica.idcargaacademica = silabus.idcargaacademica
+            where CodigoSemestre= {$this->criterio1}
+        ";
+        $sth = $this->db->prepare($query);
+        $sth->execute();
+        return $sth->fetchAll();
+    }
 
     function getSilabu() {
         $query = "select

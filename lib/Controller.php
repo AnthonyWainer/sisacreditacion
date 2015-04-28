@@ -523,6 +523,7 @@ public function ListaPdf_ps($idevento) {
         $obj->criterio1 = $p['criterio1'];
         $data = array();
         $data['rows'] = $obj->getLista();
+        $data['rows3'] = $obj->estadoSilAlu();
 //        $data['name'] = $p['name'];
 //        $data['id'] = $p['id'];
         $data['disabled'] = $p['disabled'];
@@ -707,6 +708,7 @@ public function ListaPdf_ps($idevento) {
         $data["id"] = $p['criterio'];
         $data['rows'] = $obj->getListaD();
         $data['rows2'] = $obj->estadoSil();
+
 //        $data['name'] = $p['name'];
 //        $data['id'] = $p['id'];
         $data['disabled'] = $p['disabled'];

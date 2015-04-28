@@ -10,7 +10,7 @@
 
 <?php foreach ($rows as $key => $value) { $cccu=$value[0]; 
     $cur = utf8_encode(strtoupper($value[1]));
-    $credito =(int)$value[3]; $plan=utf8_encode(strtoupper($value[4]));?>
+    $credito =(int)$value[3]; $plan=utf8_encode(strtoupper($value[4])); ?>
 
 <div id="<?php echo $i; $i++; ?>" class="lc" style="width:150px; " >
         <div class="list-group" style="margin-left: 17px; border-radius: 10px; 
@@ -22,17 +22,26 @@
                              echo 'box-shadow:0px 0px 10px 0px skyblue;';
                         }else{echo '';}
                        }
-             }
-            }else{
+             }else{
                 echo 'box-shadow:0px 0px 10px 0px skyblue;';
              }
+            }
+               if (isset($rows3)) {
+                 
+                     foreach ($rows3 as $key => $value222) {  
+                        if($value222[0]==$value[0]){
+                             echo 'box-shadow:0px 0px 10px 0px skyblue;';
+                        }else{echo '';}
+                       }
+               } 
+            
 
              ?>;"
          title="<?php echo $plan?>">
             
             <?php if(isset($_SESSION["perfil"]) && ($_SESSION["perfil"] == 'ALUMNO')){?>
             
-            <p style="font-size:8.4px; background-color:#eaf8fc; border:none"class="list-group-item ">
+            <p style="font-size:8.4px; border:none"class="list-group-item vcc">
                 <?php echo $cur; ?>
                 <!-- <b>Docente:</b><?php // echo (utf8_encode(strtoupper($value[2]))); ?> -->
                   <span class="badge" title="creditos" style="background: skyblue; margin-top:-20px; margin-right: -19px;">
@@ -93,6 +102,12 @@
 }
 </style>
 <?php if(isset($_SESSION["perfil"]) && ($_SESSION["perfil"] == 'PROFESOR')){ ?>
+<div class="dvsil" style="cursor:pointer; font-size: 8px; "><div class="circ"></div><span class="spsil">silabo vacio</span
+></div>
+<div class="dvsil" style="cursor:pointer; font-size: 8px; "><div class="circ" style="background: skyblue"></div><span class="spsil">silabo lleno</span
+></div>
+<?php } ?>
+<?php if(isset($_SESSION["perfil"]) && ($_SESSION["perfil"] == 'ALUMNO')){ ?>
 <div class="dvsil" style="cursor:pointer; font-size: 8px; "><div class="circ"></div><span class="spsil">silabo vacio</span
 ></div>
 <div class="dvsil" style="cursor:pointer; font-size: 8px; "><div class="circ" style="background: skyblue"></div><span class="spsil">silabo lleno</span

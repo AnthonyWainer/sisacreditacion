@@ -1,3 +1,23 @@
+<style>
+     #ola .tnota{
+        padding: 0px;
+        width: 38px; 
+        
+    }
+    #ola .tnota input{
+        font-size: 10px;
+        padding: 1px 8px;
+        height: 30px;
+        border: none;
+    }
+    .colorD{
+        color:red;
+    }
+    .colorA{
+        color:blue;
+    }
+
+</style>
 <br>
 <div class="row">
                     
@@ -25,7 +45,7 @@
             <tbody>
                 <tr>
                 <?php $i=1; foreach ($rows as $key => $value2) {?>
-                <td> <input class="as" id="A<?php echo $i; $i++; ?>" type="text" name="<?php echo $value2[2]; ?>"   namee="<?php echo $value2[3]; ?>"value="<?php echo (int)$value2[1]; ?> " placeholder="">
+                <td class="Uni tnota"> <input class="as form-control nota" id="A<?php echo $i; $i++; ?>" type="text" name="<?php echo $value2[2]; ?>"   namee="<?php echo $value2[3]; ?>"value="<?php echo (int)$value2[1]; ?> " placeholder="">
                 </td>
                 
                 <?php } ?>
@@ -53,6 +73,17 @@
 </div>
 
 <script>
+$('.nota').live('keyup' ,function(){
+  rangoNumeros($(this).val(),$(this));
+});
+function rangoNumeros(nro,input){
+        if(nro>=0 & nro<=20){
+         // alertify.log("esta en el rango")
+        }else{
+          input.val("");
+          alertify.log("por favor ingrese un numero mayor igual a '0' o menor igual a '20'");
+        }
+}
     nroColumnas= $(".ola tbody tr td").length-3;
     a=0;
     for (var i = 1; i <= nroColumnas; i++) {

@@ -146,8 +146,7 @@ class silabus extends Main{
             }  
                //isertamos la evaluacion
             $hh = $i+1;
-//            print_r($_P['tipEva'.$hh]); exit();
-            $cuentaEva = count($_P['tipEva'.$hh]);
+             $cuentaEva = count($_P['tipEva'.$hh]);
              for ($t=0; $t<$cuentaEva; $t++) { 
                      $sentencia6=$this->db->query("SELECT MAX(idevaluacion) as eva from evaluacion");         
                      $ct6=$sentencia6->fetch();      
@@ -185,7 +184,7 @@ class silabus extends Main{
          } 
 
         
-    header('Location: sisacreditacion/web/index.php?controller=cursosemestre');
+    header('Location: web/index.php?controller=cursosemestre');
 
 }
      

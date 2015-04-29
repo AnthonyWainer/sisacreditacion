@@ -339,7 +339,7 @@ $mipdf ->load_html($html);
 # Renderizamos el documento PDF.
 $mipdf ->render();
 # Enviamos el fichero PDF al navegador.
-$mipdf ->stream(''.$curso.'--'.$semes);
+$mipdf ->stream(''.$curso.'--'.$semes.".pdf");
 
 ?>
  

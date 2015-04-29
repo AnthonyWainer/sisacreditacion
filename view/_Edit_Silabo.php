@@ -90,7 +90,7 @@
                                   <tr class="dtp">
                                     <td width="10%">
                                         <?php 
-                                          mysql_connect("localhost", "root", "123");
+                                          mysql_connect("localhost", "root", "");
                                           mysql_select_db("sisacreditacion");
                                          $consulta=mysql_query("SELECT descripcion_tipobibliografia,idtipo_bibliografia  from tipo_bibliografia ");
                                          echo "<select name='descripcion_tipobibliografia' style='width:100px;' class='form-control' id='idtipo_bibliografia'>";
@@ -279,7 +279,7 @@
               <tr class="dtp">
                 <td> 
                 <?php 
-                mysql_connect("localhost", "root", "123");
+                mysql_connect("localhost", "root", "");
                 mysql_select_db("sisacreditacion");
                 $consulta=mysql_query("SELECT descripcion_tipobibliografia, idtipo_bibliografia from tipo_bibliografia ");
                 echo "<select  name='tipbibl[]' style='width:65%; display:;' class='form-control dts'>";

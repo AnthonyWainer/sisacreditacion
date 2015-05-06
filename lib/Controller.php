@@ -645,6 +645,7 @@ public function ListaPdf_ps($idevento) {
         $data['rows3'] = $obj->getRetornoN();
         $data['notas_py']=$obj->getNotaspy();
         $data['rows4'] = $obj->getSyllabus_P3();
+        //$data['eval'] = $obj->getEvaluacion3();
         
         foreach ( $data['rows'] as $key => $value){
             //foreach al alumno(rows) para recontruir el array de rows_notas_tutoria 

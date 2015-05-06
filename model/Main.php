@@ -553,7 +553,8 @@ Inner Join evento ON evento.idevento = detalle_asistencia_alumno_tutoria.idevent
                         C.DescripcionCurso,
                        TE.descripcion,
                        U.nombreunidad,
-                       U.idunidad
+                       U.idunidad,
+                       E.estadoBoton
                         from evaluacion as E
                         inner join unidad as U on U.idunidad = E.idunidad
                         inner join silabus as S on S.idsilabus = U.idsilabus

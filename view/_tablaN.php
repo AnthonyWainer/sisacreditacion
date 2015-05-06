@@ -80,23 +80,44 @@
 							</td>
 
 							<?php $alum= $value[0];
+
+								date_default_timezone_set();
+             					$fechaA= date("d-m-Y");
+             					//echo $fechaA;
+             					$diaA= date("d");
+					            $mesA= date("m");
+             					$anioA= date("Y");
+             					//echo $diaA;
+
 								if (isset($rows2)){ $j=1;
 									foreach ($rows2 as $key => $value) {  
-                                                                            
-                                                                            $idU= $value[9]; $por= $value[10]; ?>
+
+                                            $idU= $value[9]; $por= $value[10];  ?>
 										
 											<?php if (isset($rows4)){$ev=1;
 												foreach ($rows4 as $key => $value5) {
-                                                                                                    $ie= $value5[3]; $ponderado= $value5[2]; 
+                                                        $ie= $value5[3]; $ponderado= $value5[2]; 
 													//echo $value5[9]; 
 													if ($idU== $value5[9]) { ?>
 													<td class="tnota U<?php echo $j;?>  U<?php echo $j.'-'.$i.'-'.$ev; $ev++;?>">
+													
 													<?php  #echo $ponderado;
+													$estadoBtn  = $value5[10];
+													$fechaE= date("d-m-Y",strtotime($value5[1]));  $diaE= (date("d",strtotime($value5[1]))+7);  $mesE=date("m",strtotime($value5[1])); $anioE=date("Y",strtotime($value5[1]));
 													 if (isset($rows3)){ 
-													 foreach ($rows3 as $key => $value) { ?>
-																	<?php if (($value[0]==$alum) && ($value[2]==$ie)){ ?>
-																 		<input type='text' maxlength='2'  pattern='{0-9}+'  class='form-control nota <?php if ((int)$value[1]<=10){echo "colorD";}else{echo "colorA";}?>' name="<?php echo $alum;?>,<?php echo $ie;?>" id = "<?php echo ($value[1]*$ponderado)/100;?>"value="<?php echo (int)$value[1];?>" onblur='hi(this)'/>	
-																	<?php }?>
+													 foreach ($rows3 as $key => $value) { 
+													 	 
+														 if (($value[0]==$alum) && ($value[2]==$ie)){
+															if (($fechaE == $fechaA) || (((int)$diaA <= (int)$diaE)&&((int)$mesA == (int)$mesE)&&((int)$anioA == (int)$anioE))){
+														 		?>
+
+																 <input type='text' maxlength='2'  pattern='{0-9}+'  class='form-control nota <?php if ((int)$value[1]<=10){echo "colorD";}else{echo "colorA";}?>' name="<?php echo $alum;?>,<?php echo $ie;?>" id = "<?php echo ($value[1]*$ponderado)/100;?>"value="<?php echo (int)$value[1];?>" onblur='hi(this)'/>	
+														  	<?php }else{ ?>
+															  	<input type='text' disabled class='form-control nota <?php if ((int)$value[1]<=10){echo "colorD";}else{echo "colorA";}?>' name="<?php echo $alum;?>,<?php echo $ie;?>" id = "<?php echo ($value[1]*$ponderado)/100;?>"value="<?php echo (int)$value[1];?>" onblur='hi(this)'/>		
+															  	<?php
+														  	}
+														  }
+														  ?>
 													<?php } ?>
 														<input type="hidden" id="0"/>
 													<?php } } ?>

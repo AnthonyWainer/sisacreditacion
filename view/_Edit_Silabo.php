@@ -36,22 +36,22 @@
              <table class="table table-hover table-bordered" style="width:800px; margin-left:-70px;">
                 <tbody>
                    <tr >
-                       <td data-toggle="modal" data-target="#myModal" width="50%"><label>competencia</label>
-                       <p id="comp" class="compet"><?php echo ($value[0]) ?></p> 
+                       <td  width="50%"><label>competencia</label>
+                       <p id="comp" data-toggle="modal" data-target="#myModal" class="compet"><?php echo ($value[0]) ?></p> 
                        </td>
-                       <td data-toggle="modal" data-target="#myModal">
+                       <td >
                          <label>metodologia</label>
-                         <p id="met"> <?php echo ($value[1]) ?></p>
+                         <p id="met" data-toggle="modal" data-target="#myModal"> <?php echo ($value[1]) ?></p>
                        </td>
                    </tr>
                    <tr>
-                       <td data-toggle="modal" data-target="#myModal">
+                       <td >
                          <label>objetivo</label>
-                        <p id="ob"> <?php echo ($value[2]) ?></p>
+                        <p id="ob" data-toggle="modal" data-target="#myModal"> <?php echo ($value[2]) ?></p>
                        </td>
-                       <td data-toggle="modal" data-target="#myModal">
+                       <td >
                         <label>sumilla</label>
-                        <p id="su"> <?php echo ($value[3]) ?></p>
+                        <p id="su" data-toggle="modal" data-target="#myModal"> <?php echo ($value[3]) ?></p>
                        </td>
                    </tr>
                 </tbody>

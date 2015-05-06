@@ -49,7 +49,11 @@
                     <div class="col-md-3" style="padding-left:0; padding-right: 0;">
                         <img src="css/images_eapisi/eapisi.png" width="60px" height="50px">
                     </div>
-                    <div class="col-md-9" style="text-align: center;font-size: 28px;" >
+                    <div class="col-md-9" style="text-align: center;
+
+                    <?php if ($_SESSION['perfil'] == "PROFESOR" || $_SESSION['perfil'] == "ALUMNO" ){ ?>
+                                <?php echo "font-size: 1.9em;"; }else{echo "font-size: 0.9em;";}?>" >
+                                
                         <p style="text-align: center; color: #fff">
                         <strong style="text-align: center; text-shadow: 0.2em 0.2em 0.2em #333">
                             <?php echo utf8_encode($_SESSION['perfil']); ?>
@@ -80,24 +84,24 @@
                              src="css/images_eapisi/user.jpg" >
                         </div>
                     </div>
-                    <div class="col-md-5" style=" height: 40px; margin-top: 10px;">
+                    <div class="col-md-8" style=" height: 40px; margin-top: 10px;">
                         <div>
-                            <p style="text-align: center; color: #fff; font-size: 20px; font-family: comic; text-shadow: 0.2em 0.2em 0.2em #333 ">
+                            <p style="text-align: left; color: #fff; font-size: 20px; font-family: comic; text-shadow: 0.2em 0.2em 0.2em #333 ">
                             <strong> <?php echo utf8_encode($_SESSION['name']); ?></strong>
                             </p>
                         </div>
                       
                     </div>
 
-                    <div class="col-md-3" style="padding-top: 15px;">
+                   <!--<div class="col-md-3" style="padding-top: 15px;">
                         <p href="#" style="font-family: Calibri; color: #fff !important;; text-align: right;">
                         <?php /*setlocale(LC_ALL, "es_ES");
                         $fechal = strftime("%A %d de %B del %Y");
                         $fechal = ucwords($fechal);
                         echo $fechal; */?>
                         </p>
-                    </div>
-
+                    </div> 
+                            -->
                 
                     <div class="col-md-3" style="padding-top: px;">
                         <a href="/sisacreditacion">

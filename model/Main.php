@@ -624,6 +624,7 @@ Inner Join evento ON evento.idevento = detalle_asistencia_alumno_tutoria.idevent
 //        exit();
         return $sth->fetchAll();
     }    
+    
     function getSyllabus_P2() {
         $query = "SELECT 
                        

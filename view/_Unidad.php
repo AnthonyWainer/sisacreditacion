@@ -1,13 +1,26 @@
 <script type="text/javascript" src="lib/alertify.js"></script>
 <link rel="stylesheet" href="themes/alertify.core.css"  type="text/css"/>
 <link rel="stylesheet" href= "themes/alertify.default.css"  type="text/css"/>
+<link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
 
 <style>
     .codunidad:hover{
         background: #eaf8fc;
+        height: 32px;
+    }
+    .codunidad{
+        height: 32px; 
     }
     .enUni{
         display: none;
+    }
+    .eli{
+       color:red;
+       font-size: 22px;
+       cursor: pointer;
+    }
+    .eli:hover{
+       color: blue;
     }
 
 </style>
@@ -16,15 +29,15 @@
         ?>  
 <br>
 <div class="panel panel-default col-md-12  "  >
-    <div class="panel-heading codunidad tamañodeuni" data-toggle="modal" data-target="#myModal2" id="<?php echo $conta+20; ?>">
+    <p class="col-md-3" style="width: 18%;">UNIDAD <?php echo $conta-10; ?> : </p>
+    <div class="panel-heading codunidad tamañodeuni col-md-8"   id="<?php echo $conta+20; ?>">
     <input type="hidden" class="idunidad<?php echo $conta; ?>" value="<?php echo $value[1]; ?>">
                 <h4 class="panel-title" id="hola" style="text-align: center; " >
                     <a data-toggle="collapse"  data-parent="#accordion" style="text-decoration: none; font-size: 11px"
                      href="#<?php echo $conta; ?>" >
-                        <p style="float: left; width: 100px">UNIDAD <?php echo $conta-10; ?> : </p>
-                        <p  style="width: 400px" class="titUni"><?php echo utf8_encode($value[0]); ?>
-                        </p>
+                        <p class="col-md-12" title="abrir unidad" data-toggle="modal" data-target="#myModal2"><?php echo utf8_encode($value[0]); ?></p>
                     </a>
+                    
                 </h4>
         <table class="table enUni" id="en<?php echo $conta; ?>">
             <input type="hidden" id="idunik" value="<?php echo $value[1]?>" />            
@@ -61,7 +74,7 @@
             </tbody>
         </table>
     </div>
-
+<p class="col-md-1 eli" onclick="eliUni(<?php echo $value[1]?>)" title="eliminar unidad"><i class="fa fa-trash-o"></i></p>
 </div>
 
 <?php $conta = $conta + 1;}?>
@@ -89,7 +102,13 @@
 </div>
  
 <script>
+function eliUni(id){
+    alert("huanaco"+id);
+
+}
+
 $(document).ready(function(){
+
 
 var tamañodeuni= $(".tamañodeuni").length;
 $('.codunidad').live("click",function(){

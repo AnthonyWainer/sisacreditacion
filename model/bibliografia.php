@@ -98,5 +98,12 @@ class bibliografia extends Main{
         $stmt->bindValue(':p2', $edit, PDO::PARAM_STR);
         $p1 = $stmt->execute();
     }
+    function getTipoBibliografia() {
+        $query = "SELECT descripcion_tipobibliografia,idtipo_bibliografia  from tipo_bibliografia";
+        $sth = $this->db->prepare($query);
+        $sth->execute();
+        return $sth->fetchAll();
+    }
+
 }
 ?>

@@ -95,10 +95,8 @@ class cursosemestreController extends Controller {
 //        echo $codcurso;
 //        echo $codsemestre;
       echo $envio;
-        
-       }
-       
-       
+      }
+             
        
          public function getEdiSillabus()
        {
@@ -106,8 +104,6 @@ class cursosemestreController extends Controller {
         //print_r($_POST);exit();
         $codcurso=$_POST["Codigo"];
         $codsemestre=$_POST["codemestre"];
-
-
         
         $envio=$this->detalle_silabus(array('filtro' => 'CodigoCurso','filtro1' =>'CodigoSemestre','criterio0' => $codcurso,'criterio1' => $codsemestre));      
 //        echo $codcurso;
@@ -129,12 +125,8 @@ class cursosemestreController extends Controller {
        
        public function getUnidad ()
        {
-
-
-
         $codcurso=$_POST["CodigoCurso"];
         $codsemestre= $_POST["idSemestre"];
-        
         $opt=$_POST['sin'];
         
         $envio=$this->unidad_recibir(array('filtro' => 'CodigoCurso','filtro1' =>'CodigoSemestre','criterio' => $codcurso,'criterio1' => $codsemestre,'option' => $opt));      

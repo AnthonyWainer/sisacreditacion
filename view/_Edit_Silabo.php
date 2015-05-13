@@ -72,6 +72,8 @@
             <input  type="hidden" id="curs" value="<?php echo $value[5] ;?>"/>
             <input type="hidden" id="semes" value="<?php echo $value[4] ; ?>">
               <br>
+
+
            <!--- <button id="biblio" type="button" class="btn btn-default" onClick="bib()">Agregar</button> -->
                    <table id="bibl" class='table table-hover table-bordered' style="width:800px; margin-left:-70px;">
                             <thead>
@@ -82,6 +84,7 @@
                             </thead>
 
                             <tbody>
+
                                  <?php $asd=1; foreach ($rows2 as $key => $value)  { 
                                        if ($value[1]==$idsilak) {
                                      
@@ -89,16 +92,13 @@
                                 <input type="hidden" class="idbibliog<?php echo $asd;  ?>" value="<?php echo $value[0]?>" />
                                   <tr class="dtp">
                                     <td width="10%">
-                                        <?php 
-                                          mysql_connect("localhost", "root", "");
-                                          mysql_select_db("sisacreditacion");
-                                         $consulta=mysql_query("SELECT descripcion_tipobibliografia,idtipo_bibliografia  from tipo_bibliografia ");
-                                         echo "<select name='descripcion_tipobibliografia' style='width:100px;' class='form-control' id='idtipo_bibliografia'>";
-                                             while($registro=mysql_fetch_row($consulta)){
-                                                 if ($value[3] != $registro[1] ) {
-                                                    echo "<option value='".$registro[1]."'> ".$registro[0]."</option>";
+                                      <?php 
+                                        echo "<select name='descripcion_tipobibliografia' style='width:100px;' class='form-control' id='idtipo_bibliografia'>";
+                                          foreach ($rows5 as $key => $bib){                                       
+                                                 if ($value[3] != $bib[1] ) {
+                                                    echo "<option value='".$bib[1]."'> ".$bib[0]."</option>";
                                                  } else { 
-                                                  echo "<option selected='selected' value='".$registro[1]."'> ".$registro[0]."</option>";
+                                                  echo "<option selected='selected' value='".$bib[1]."'> ".$bib[0]."</option>";
                                                  }
                                               }
                                           echo "</select>";   
@@ -279,12 +279,9 @@
               <tr class="dtp">
                 <td> 
                 <?php 
-                mysql_connect("localhost", "root", "");
-                mysql_select_db("sisacreditacion");
-                $consulta=mysql_query("SELECT descripcion_tipobibliografia, idtipo_bibliografia from tipo_bibliografia ");
                 echo "<select  name='tipbibl[]' style='width:65%; display:;' class='form-control dts'>";
-                  while($registro=mysql_fetch_row($consulta)){
-                    echo "<option value='".$registro[1]."'>".$registro[0]."</option>";
+                foreach ($rows5 as $key => $bib){   
+                    echo "<option value='".$bib[1]."'>".$bib[0]."</option>";
                   }
                 echo "</select>";   
                 echo '<br/>'; 

@@ -17,7 +17,7 @@
             id_sub_evento=$(this).val();
             tema=$("#sub_even_"+id_sub_evento).val();
             $("#asignacionPS").html('<br><br><br><br><strong><span>Cargando el nuevo vista...</span></strong>');
-            $.post('index.php', 'controller=asignacionEU&action=asignarPS&idevento='
+            $.post('index.php', 'controller=asignacionEU&action=asignarEU&idevento='
                  +id_sub_evento+'&evento='+tema, function(data) {
             console.log(data);
             $("#asignacionPS").empty().append(data);

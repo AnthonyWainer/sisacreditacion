@@ -106,7 +106,7 @@ label {
                             <div class="col-md-12">
                                 <div class="col-md-6">
                                     <big><label style="width: 161px;">Fecha Inico</label></big>
-                                    <input type="date" class="form-control oblig" placeholder="Fecha" name="fecha" id="fecha" value="<?php echo $obj['fecha']; ?>"> 
+                                    <input type="date"  min="<?php echo  date("Y-m-d");?>" class="form-control oblig" placeholder="Fecha" name="fecha" id="fecha" value="<?php echo $obj['fecha']; ?>"> 
                                 </div>
                                 
                                 <div class="col-lg-6">

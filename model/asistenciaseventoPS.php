@@ -9,6 +9,7 @@ class asistenciaseventoPS extends Main {
                         evento.idevento,
                          evento.tema,
                         tipo_evento.descripcion,
+                        'Proyeccion social',
                         evento.fecha,
                         evento.CodigoProfesor,
                         clasificacion_evento.descripcion

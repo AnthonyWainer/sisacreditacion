@@ -9,6 +9,7 @@ class asistenciaseventoEU extends Main {
                         evento.idevento,
                          evento.tema,
                         tipo_evento.descripcion,
+                        'Extension Universitaria',
                         evento.fecha,
                         evento.CodigoProfesor,
                         clasificacion_evento.descripcion
@@ -17,7 +18,7 @@ class asistenciaseventoEU extends Main {
  Inner Join tipo_evento ON tipo_evento.idtipo_evento = evento.idtipo_evento
  Inner Join clasificacion_evento ON clasificacion_evento.id_clasificacion_evento = tipo_evento.id_clasificacion_evento
     where  evento.CodigoSemestre='" . $semestre_ultimo . "' and  tipo_evento.idtipo_evento= 4 and evento.idevento_padre is null and " . $c . " like :query";
-       
+//        print_r($sql);EXIT;
         $param = array(array('key' => ':query', 'value' => "%$query%", 'type' => 'STR'));
         $data['total'] = $this->getTotal($sql, $param);
         $data['rows'] = $this->getRow($sql, $param, $p);

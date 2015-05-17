@@ -2,7 +2,7 @@
 $conexion=mysql_connect("localhost","root","") or //conexion al servidor
 die("Problemas en la conexion");
 
-mysql_select_db("sisacreditacion",$conexion) or //conexion a la base de datos 
+mysql_select_db("s",$conexion) or //conexion a la base de datos 
 die("Problemas en la selección de la base de datos");
 extract($_GET);
 switch ($caso) {
@@ -16,6 +16,7 @@ FROM
 detalle_asistencia_alumno_tutoria
 Inner Join evento ON detalle_asistencia_alumno_tutoria.idevento = evento.idevento where evento.CodigoProfesor is null
 group by detalle_asistencia_alumno_tutoria.idevento";
+        
         $res = mysql_query($sql, $conexion);
         $arrayX = array();
 
@@ -25,7 +26,7 @@ group by detalle_asistencia_alumno_tutoria.idevento";
             $arrayX[$dep_rows["tema"]][] = (int) ($dep_rows["Masculino"]);
             $arrayX[$dep_rows["tema"]][] = (int) ($dep_rows["Femenino"]);
         }
-
+      
         echo json_encode($arrayX);
         break;
     // case n // otras opciones

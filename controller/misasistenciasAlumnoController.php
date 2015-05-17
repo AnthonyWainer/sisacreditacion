@@ -33,9 +33,10 @@ class misasistenciasAlumnoController extends Controller {
          
     }
 	public function mi_Tutor() {
-    
+   
         $obj = new misasistenciasAlumno();  
         $semestre =$this->mostrar_semestre_ultimo(); 
+       
         $idsemestre=$_POST['sem'];
         if(!empty($idsemestre)){$semestre=$idsemestre;}
         $codalumno=$_SESSION['idusuario'];

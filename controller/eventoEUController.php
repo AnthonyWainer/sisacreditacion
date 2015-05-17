@@ -57,7 +57,7 @@ class eventoEUController extends Controller {
 
         $view->setData($data);
         $view->setTemplate('../view/eventoEU/_Form.php');
-        $view->setLayout('../template/Layout.php');
+        $view->setLayout('../template/Layout3.php');
         $view->render();
     }
 

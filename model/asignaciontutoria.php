@@ -105,13 +105,12 @@ class asignaciontutoria extends Main {
        $query = "SELECT
         detalle_asignacion_tutoria.CodigoProfesor,
         detalle_asignacion_tutoria.CodigoAlumno,
-        CONCAT_WS('',alumnos.NombreAlumno,alumnos.ApellidoPaterno,alumnos.ApellidoMaterno) as nombre
+        CONCAT_WS(' ',alumnos.NombreAlumno,alumnos.ApellidoPaterno,alumnos.ApellidoMaterno) as nombre
         FROM
         detalle_asignacion_tutoria
         INNER JOIN alumnos ON alumnos.CodigoAlumno = detalle_asignacion_tutoria.CodigoAlumno
         where detalle_asignacion_tutoria.CodigoProfesor='".$CodigoProfesor."' and detalle_asignacion_tutoria.CodigoSemestre='".$CodigoSemestre."'
         ";
-
         $sth = $this->db->prepare($query);
         $sth->execute();
         return $sth->fetchAll();

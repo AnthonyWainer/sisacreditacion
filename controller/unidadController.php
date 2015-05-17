@@ -113,29 +113,12 @@ class unidadController extends Controller {
 
     public function delete() {
         $obj = new unidad();
-        $p = $obj->delete($_GET['id']);
-        if ($p[0]) {
-            header('Location: index.php?controller=unidad');
-        } else {
-            $data = array();
-            $view = new View();
-            $data['msg'] = $p[1];
-            $data['url'] = 'index.php?controller=unidad';
-            $view->setData($data);
-            $view->setTemplate('../view/_Error_App.php');
-            $view->setLayout('../template/Layout.php');
-            $view->render();
-        }
+        $obj->delete($_POST['id']);
     }
 
     public function create() {
-        $data = array();
-        $view = new View();
-        $data['silabus'] = $this->Select(array('id' => 'idsilabus', 'name' => 'idsilabus', 'table' => 'silabus', 'code' => $obj->idsilabus));
-        $view->setData($data);
-        $view->setTemplate('../view/unidad/_Form.php');
-        $view->setLayout('../template/Layout.php');
-        $view->render();
+        $obj = new unidad();
+        $obj->insert($_POST);
     }
 
     public function getUnidad() {

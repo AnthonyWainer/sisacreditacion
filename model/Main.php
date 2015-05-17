@@ -771,7 +771,8 @@ Inner Join evento ON evento.idevento = detalle_asistencia_alumno_tutoria.idevent
                                CA.CodigoCurso,
                                U.descripcionunidad,
                                U.competencia,
-                               U.porcentaje
+                               U.porcentaje,
+                               U.duracion
                                 from unidad as U
                                 inner join silabus as S on S.idsilabus = U.idsilabus
                                 inner join carga_academica as CA on CA.idcargaacademica = S.idcargaacademica

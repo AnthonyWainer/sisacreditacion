@@ -2,6 +2,7 @@
 
 require_once '../model/Main.php';
 require_once '../model/bibliografia.php';
+require_once '../model/semestre.php';
 
 
 class ControllerException extends Exception {
@@ -781,15 +782,18 @@ public function ListaPdf_ps($idevento) {
 
     public function unidad_recibir($p) {
         $obj = new Main();
+        $uni = new semestre();
 //        $obj->table = $p['table'];
         $obj->filtro = $p['filtro'];
         $obj->criterio = $p['criterio'];
         $obj->filtro1 = $p['filtro1'];
         $obj->criterio1 = $p['criterio1'];
+        $uni->codSemestre = $p['criterio1'];
         $obj->opt = $p['option'];
 
         $data = array();
         $data['rows'] = $obj->getUnidad();
+        $data['uni'] = $uni->ver();
         if ($obj->opt == 'dsa') {
             $data['rows2'] = "boton";
         } else {
@@ -1564,4 +1568,5 @@ public function grilla_miproyecto2($p) {
 }
 
 ?>
+
 

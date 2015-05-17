@@ -25,7 +25,19 @@
 
 </style>
         <?php  $conta = 11;
+
+              foreach ($uni as $key => $value) {
+                $semanas= floor((strtotime($value[1])-strtotime($value[0]))/604800);
+                if ($semanas<=8) {
+                  $ciclo = "verano";
+                }else{
+                  $ciclo = "normal";
+                }
+              }
             foreach ($rows as $key => $value) {
+
+
+
         ?>  
 <br>
 <div class="panel panel-default col-md-12  "  >

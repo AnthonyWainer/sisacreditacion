@@ -97,5 +97,11 @@ class semestre extends Main{
         $p2 = $stmt->errorInfo();
         return array($p1 , $p2[2]);
     }
+    function ver(){
+        $query = "SELECT FechaInicio,FechaTermino  from semestreacademico WHERE CodigoSemestre = '{$this->codSemestre}' ";
+        $sth = $this->db->prepare($query);
+        $sth->execute();
+        return $sth->fetchAll();
+    }
 }
 ?>

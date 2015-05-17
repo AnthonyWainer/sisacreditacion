@@ -2,8 +2,9 @@
 
 include_once("../lib/dbfactory.php");
 
-class eventoPS extends Main {
-function index($query, $p, $c,$semestre) {
+class evento_proyeccion_social extends Main {
+
+function index($query, $p, $c,$idcap,$sem) {
         $sql = ' SELECT
 evento.idevento,
 evento.tema,
@@ -12,7 +13,7 @@ evento.fecha,
 evento.lugar
 FROM
 evento INNER JOIN tipo_evento ON tipo_evento.idtipo_evento = evento.idtipo_eventO
-WHERE  evento.idtipo_evento="3" AND evento.idevento_padre is null and evento.CodigoSemestre="'.$semestre.'" and ' . $c . ' like :query';
+WHERE evento.idtipo_evento="5"  AND evento.idevento_padre is null and evento.CodigoProfesor="'.$idcap.'" and evento.CodigoSemestre="'.$sem.'" and ' . $c . ' like :query';
 //        echo $sql;exit;
         $param = array(array('key' => ':query', 'value' => "%$query%", 'type' => 'STR'));
         $data['total'] = $this->getTotal($sql, $param);
@@ -20,40 +21,25 @@ WHERE  evento.idtipo_evento="3" AND evento.idevento_padre is null and evento.Cod
         $data['rowspag'] = $this->getRowPag($data['total'], $p);
         return $data;
     }
- function get_pre_actividades($idevento){
-         $sql="SELECT
-p_c_evento.id_pc_evento,
-p_c_evento.fecha_inicio,
-p_c_evento.fecha_termino,
-p_c_evento.pre_actividad,
-p_c_evento.descripcion,
-p_c_evento.idevento,
-evento.tema
-FROM
-p_c_evento
-INNER JOIN evento ON p_c_evento.idevento = evento.idevento
-WHERE p_c_evento.idevento='".$idevento."'";
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute();
-        return $stmt->fetchAll();
-    }
-    function get_sub_eventos($idevento) {
-         $sql="SELECT
-evento.hora_evento,
-evento.idevento_padre,
-evento.lugar,
+function index1($query, $p, $c,$idcap,$sem) {
+        $sql = ' SELECT
+evento.idevento,
+evento.tema,
+tipo_evento.descripcion,
 evento.fecha,
-evento.idtipo_evento,
-evento.tema
+evento.lugar
 FROM
-evento
-WHERE evento.idevento_padre='".$idevento."'";
-        $stmt = $this->db->prepare($sql);
-        
-        $stmt->execute();
-        return $stmt->fetchAll();
+evento INNER JOIN tipo_evento ON tipo_evento.idtipo_evento = evento.idtipo_eventO
+WHERE evento.idtipo_evento="5"  AND evento.idevento_padre is null and evento.CodigoProfesor not like "'.$idcap.'" and evento.CodigoSemestre="'.$sem.'" and ' . $c . ' like :query';
+//        echo $sql;exit;
+        $param = array(array('key' => ':query', 'value' => "%$query%", 'type' => 'STR'));
+        $data['total'] = $this->getTotal($sql, $param);
+        $data['rows'] = $this->getRow($sql, $param, $p);
+        $data['rowspag'] = $this->getRowPag($data['total'], $p);
+        return $data;
     }
-            
+
+    
     function get_profesores($idevento) {
         $sql = "SELECT
     detalle_asistencia_docente.CodigoProfesor,
@@ -110,6 +96,40 @@ WHERE evento.idevento_padre='".$idevento."'";
         $stmt->execute();
         return $stmt->fetchAll();
     }
+    function get_pre_actividades($idevento){
+         $sql="SELECT
+p_c_evento.id_pc_evento,
+p_c_evento.fecha_inicio,
+p_c_evento.fecha_termino,
+p_c_evento.pre_actividad,
+p_c_evento.descripcion,
+p_c_evento.idevento,
+evento.tema
+FROM
+p_c_evento
+INNER JOIN evento ON p_c_evento.idevento = evento.idevento
+WHERE p_c_evento.idevento='".$idevento."'";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    function get_sub_eventos($idevento) {
+         $sql="SELECT
+evento.hora_evento,
+evento.idevento_padre,
+evento.lugar,
+evento.fecha,
+evento.idtipo_evento,
+evento.tema
+FROM
+evento
+WHERE evento.idevento_padre='".$idevento."'";
+        $stmt = $this->db->prepare($sql);
+        
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+            
 
     function get_externos($idevento) {
         $sql = "SELECT
@@ -224,7 +244,7 @@ WHERE evento.idevento_padre='".$idevento."'";
             $cod_profesor = $_SESSION['idusuario'];
         }
         $semestre_ultimo = $this->mostrar_semestre_ultimo();
-        $sql = $this->Query("sp_evento_proyeccion_social_iu(1,:p1,:p2,:p3,:p4,:p5,:p6,:p7,:p8,:p9)");
+        $sql = $this->Query("sp_evento_proyeccion_social_iu(1,:p1,:p2,:p3,:p4,:p5,:p6,:p7,:p8)");
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':p1', $_P['idevento'], PDO::PARAM_INT);
         $stmt->bindValue(':p2', $_P['tema'], PDO::PARAM_STR);
@@ -234,7 +254,6 @@ WHERE evento.idevento_padre='".$idevento."'";
         $stmt->bindValue(':p6', $_SESSION['idusuario'], PDO::PARAM_STR);
         $stmt->bindValue(':p7', $_P['lugar'], PDO::PARAM_STR);
         $stmt->bindValue(':p8', $_P['distrito'], PDO::PARAM_STR);
-        $stmt->bindValue(':p9', $_P['fecha_termino'], PDO::PARAM_STR);
         $p1 = $stmt->execute();
         $p2 = $stmt->errorInfo();
         return array($p1, $p2[2]);
@@ -251,6 +270,7 @@ WHERE evento.idevento_padre='".$idevento."'";
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->db->beginTransaction();
             $estado = false;
+//            print_r($agreg_seps);exit;
             foreach ($agreg_seps['tema'] as $key => $value) {
                 $sentencia = $this->db->query("SELECT MAX(idevento) as cant from evento");
                 $ct = $sentencia->fetch();
@@ -295,6 +315,7 @@ WHERE evento.idevento_padre='".$idevento."'";
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->db->beginTransaction();
             $estado = false;
+//            print_r($_P);
             foreach ($_P['idevento'] as $key => $value) {
 //                echo "aki".$_P['idevento'][$key]."tema".$_P['tema_up'][$key];
                 $stmt2->bindValue(':p1', $_P['idevento'][$key], PDO::PARAM_INT);

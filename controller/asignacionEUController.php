@@ -89,7 +89,7 @@ class asignacionEUController extends Controller {
         echo $view->renderPartial();
     }
 
-    public function asignarPS() {
+    public function asignarEU() {
         $obj = new asignacionEU();
         $main = new main();
         $data = array();

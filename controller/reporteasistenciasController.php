@@ -18,6 +18,12 @@ class reporteasistenciasController extends Controller {
         $view->setLayout('../template/Layout.php');
         $view->render();
     }
+    public function get(){
+        $obj = new reporteasistencias();
+        $obj->get_reporte_asistencias($_REQUEST);
+        
+        
+    }
 
 
 }

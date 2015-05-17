@@ -39,8 +39,6 @@
             <?php foreach($cols as $c) { ?>
             <th ><?php echo strtoupper($c); ?></th>
             <?php } 
- 
-//            if($unirse){echo '<th align="center">UnirseMiriammmmm</th>';}
             
             if($ver_detalles){echo '<th align="center">Ver Detalles</th>';}
             if($edit) {echo '<th >editar</th>';}

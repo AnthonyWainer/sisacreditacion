@@ -13,11 +13,12 @@
                 "infoFiltered": "(filtered from _MAX_ total records)"
             }
         });
-        $('#save').click(function(){
+        $('#save').click(function(){ 
             idevento=$('#idevento').val();
             seria=$('#frm').serialize();
             $.post('index.php', 'controller=asistenciaalumno&action=save&'+seria+'&idevento=' + idevento, function(data) {
-            });
+               if(data.resp==1){$("#mensaje").empty().append(data.msg);}
+            },'json');
         });
     });
 </script>
@@ -82,6 +83,7 @@
                 <fieldset class="ui-corner-all" >
                     <legend>Accion</legend>
                     <div  style="clear: both; padding: 10px; width: auto;text-align: center">
+                        <div id="mensaje"></div>
                         <a href="#" id="save" class="button">GRABAR</a>
                         <a href="index.php?controller=asistenciaalumno" class="button">ATRAS</a>
                     </div>

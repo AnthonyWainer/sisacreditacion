@@ -44,9 +44,10 @@ class asistenciaalumnoController extends Controller {
 
     public function save() {
         $obj = new asistenciaalumno();
+        
             $p = $obj->update($_REQUEST['idevento'],$_REQUEST['codigoalumno'],$_SESSION['idusuario'],$_REQUEST['asistencia']);
             if ($p[0]) {
-				die("<script> window.location='index.php?controller=asistenciaalumno'; </script>");
+                    print_r(json_encode(array("resp"=>1,"msg"=>"se inserto correctamente las asistencias")));
               
             } else {
                 $data = array();

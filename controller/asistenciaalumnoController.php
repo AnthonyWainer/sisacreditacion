@@ -67,6 +67,7 @@ class asistenciaalumnoController extends Controller {
         $data = array();
         $semestre_ultimo = $this->mostrar_semestre_ultimo();
         $detector=$obj->detectando($_REQUEST['idevento'],$_SESSION['idusuario']);
+        
         if(empty($detector)){
         $datos_alumnos=$obj->alumnos_de_profe($semestre_ultimo,$_SESSION['idusuario']);
         $llenar=$obj->insert($_REQUEST['idevento'],$_SESSION['idusuario'],$datos_alumnos);

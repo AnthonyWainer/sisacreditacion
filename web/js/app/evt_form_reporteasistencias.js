@@ -63,7 +63,7 @@ function recarga()
         },
         series: []
     }
-    var url = '../view/reporteasistencias/ajax_json.php?caso=grafico1';
+    var url = 'index.php?controller=reporteasistencias&action=get&caso=grafico1';
     var xAxis = {
         
         categories: [],

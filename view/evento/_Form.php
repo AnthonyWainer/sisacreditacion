@@ -5,64 +5,6 @@
 <div class="div_container">
     <h6 class="ui-widget-header">Registro de Tutoria</h6>
 
-<!--
-<<<<<<< HEAD
-<form id="frm" action="index.php" method="POST">
-    <input type="hidden" name="controller" value="evento" />
-    <input type="hidden" name="action" value="save" />
-    <div class="contFrm ui-corner-all" style="background: #fff;">
-        <div class="contenido" style="margin:0 auto; width: 450px; ">
-            <fieldset class="ui-corner-all" >
-                <legend>Datos</legend>   
-                <table border="0" cellpadding="3" cellspacing="1" style="background-color:#fff;margin-left:2%" >
-                    <tr class="fil">
-                        <td>
-                <label for="idevento" class="labels" style="width: 100px">Codigo:</label>
-                        </td>
-                        <td>
-                <input id="idevento" name="idevento" class="text ui-widget-content ui-corner-all" style=" width: 200px; text-align: left;" value="<?php echo $obj->idevento; ?>" readonly />                
-                        </td>
-                    </tr>
-                    <tr class="fil">
-                        <td>
-                <label for="tema" class="labels" style="width: 190px" >Tema:</label>
-                        </td>
-                        <td>
-                <input id="tema" maxlength="100" name="tema" class="text ui-widget-content ui-corner-all" style=" width: 200px; text-align: left;" value="<?php echo $obj->tema; ?>" />
-                        </td>
-                 
-                <br/>
-                
-                <label for="tipo_evento" class="labels" style="width: 140px" >Tipo Evento:</label>
-                <?php echo $tipo_evento; ?>  
-            </tr>
-                <br/>
-                <label for="CodigoSemestre" class="labels" style="width: 110px" >CodigoSemestre:</label>
-                <input id="CodigoSemestre" name="CodigoSemestre" class="text ui-widget-content ui-corner-all" style=" width: 120px; text-align: left;" value="<?php echo $obj->CodigoSemestre; ?>" />
-               
-                <br>
-                    
-                 <label for="CodigoSemestre" class="labels" style="width: 100px" >Semestres:</label>
-                // echo $semestreacademico; ?>  
-                <br/>
-                
-                <label for="fecha" class="labels" style="width: 140px" >Fecha:</label>
-                <input id="fecha" maxlength="100" name="fecha" class="text ui-widget-content ui-corner-all" style=" width: 150px; text-align: left;" value="<?php echo $obj->fecha; ?>" />
-                 
-                <br/>
-                
-                </table>
-            
-             </fieldset> 
-             <fieldset class="ui-corner-all" >
-                <legend>Accion</legend>    
-                <div  style="clear: both; padding: 10px; width: auto;text-align: center">
-                    <a href="#" id="save" class="button">GRABAR</a>
-                    <a href="index.php?controller=evento" class="button">ATRAS</a>
-                </div>
-             </fieldset> 
-=======-->
-
     <style>
 
     fieldset{
@@ -132,7 +74,7 @@ label {
                        <big><label for="fecha" >Fecha</label></big>
                           
                            
-                       <input type="date" class="form-control oblig" placeholder="Fecha" name="fecha" id="fecha" value="<?php echo $obj->fecha; ?>">
+                       <input type="date" min="<?php echo  date("Y-m-d");?>" class="form-control oblig" placeholder="Fecha" name="fecha" id="fecha" value="<?php echo $obj->fecha; ?>">
                                 
                        
                                 </div>

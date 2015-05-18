@@ -51,6 +51,7 @@ where detalle_asistencia_alumno_tutoria.CodigoProfesor='".$idprof."' and detalle
             
 
     function insert($_event,$idprof,$idalum) {
+//        echo "ente".$_event.','.$idprof.','.$idalum;print_r($idalum);exit;
         $sql2 = $this->Query("sp_detalle_asistencia_alumno_tutoria_iu(0,:p1,:p2,:p3,:p4,:p5,:p6)");     
         $stmt2 = $this->db->prepare($sql2);
         try{
@@ -124,7 +125,7 @@ where detalle_asistencia_alumno_tutoria.CodigoProfesor='".$idprof."' and detalle
     
     
     function lista_alumnos($ideven,$cod_prof,$codsem){
-        $sql = "SELECT
+        $sql = "SELECT DISTINCT
  alumnos.CodigoAlumno,
  alumnos.NombreAlumno,
  concat(alumnos.ApellidoPaterno,' ',alumnos.ApellidoMaterno) AS Apellidos,

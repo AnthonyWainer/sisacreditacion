@@ -25,21 +25,47 @@
 
 </style>
         <?php  $conta = 11;
-
+$nros=0;
+$porc=0;
+foreach ($rows as $key => $value) {
+  $nros += $value[7];
+  $porc += $value[6];
+}        
+echo "numero de semanas = ".$nros;
+function sem($sema,$s,$por){
+    if ($sema<$s) {
+      ?>
+      <br>
+      <input type="text" placeholder="nombreunidad" class="nombreU">
+      <label for="">nro: temas</label>
+      <input type="number" style="width:50px;" class="nroT" value="<?php echo $s-$sema; ?>" placeholder="">
+      <label for="">porcentaje: </label>
+      <input type="number" style="width:50px;" class="porc"  value="<?php echo 100-$por; ?>" placeholder="">
+      <button type="button" class="btn btn-default agU">agregar Unidad</button>
+      <?php
+    }else{
+      echo "ya esta lleno";
+    }
+}
               foreach ($uni as $key => $value) {
                 $semanas= floor((strtotime($value[1])-strtotime($value[0]))/604800);
                 if ($semanas<=8) {
-                  $ciclo = "verano";
+                 sem($nros,8,$porc);
                 }else{
-                  $ciclo = "normal";
+                  sem($nros,18,$porc);
                 }
+                echo "<br>semanas totales= ".$semanas;
               }
+
+
+
             foreach ($rows as $key => $value) {
 
 
 
         ?>  
 <br>
+
 <div class="panel panel-default col-md-12  "  >
     <p class="col-md-3" style="width: 18%;">UNIDAD <?php echo $conta-10; ?> : </p>
     <div class="panel-heading codunidad tamañodeuni col-md-8"   id="<?php echo $conta+20; ?>">
@@ -114,8 +140,25 @@
 </div>
  
 <script>
+$(".agU").click(function(){
+  idsi = $("#silabo").val();
+  nombre = $(".nombreU").val();
+  nroT = $(".nroT").val();
+  porc = $(".porc").val();
+  $.post('index.php', 'controller=unidad&action=create&idsilabo=' +idsi+'&nombreunidad='+nombre+'&duracion='+nroT+'&porcentaje='+porc, function(data) {
+        unidad();
+  });
+});
+
+
+
+
+
 function eliUni(id){
-    alert("huanaco"+id);
+    //alert("huanaco"+id);
+    $.post('index.php', 'controller=unidad&action=delete&id=' +id, function(data) {
+        unidad();
+    });
 
 }
 
@@ -177,4 +220,5 @@ $('.codunidad').live("click",function(){
 
 
 </script>
+
 

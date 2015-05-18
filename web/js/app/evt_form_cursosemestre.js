@@ -291,15 +291,14 @@ $.post('index.php', 'controller=cursosemestre&action=getEdiSillabus&Codigo=' + i
 }
 
 $(".unidad").live("click", function() {
+    unidad();
+});
+function unidad(){
     var semestre = $("#semestre").attr("value");
     var curso = $("#curso").attr("value");
     var opt="asd";
 
-    //alert(semestre+"-"+curso+"-"+opt);
-//        
-//        var d=semestre+' '+curso;
-//        alert (d);
-            $("#boton").css("display", "none");
+    $("#boton").css("display", "none");
                 
     $.post('index.php', 'controller=cursosemestre&action=getUnidad&CodigoCurso=' + curso + '&idSemestre=' + semestre+'&sin='+opt, function(data) {
       if(data=="")
@@ -312,9 +311,7 @@ $(".unidad").live("click", function() {
 
         
     });
-
-});
-
+}
 function temasdUnidad(id){
     
     var codunidad=$("#idunidad").attr("value");

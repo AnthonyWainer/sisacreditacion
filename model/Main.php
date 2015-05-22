@@ -2045,7 +2045,7 @@ function getDatos_grilla_solicitudes_eu() {
         INNER JOIN evento ON detalle_asistencia_alumno.idevento = evento.idevento
         INNER JOIN tipo_evento ON evento.idtipo_evento = tipo_evento.idtipo_evento
         INNER JOIN cargo_asistencia_evento ON detalle_asistencia_alumno.id_cargo = cargo_asistencia_evento.id_cargo
-        WHERE evento.idevento in (".$todos_idsuventos.") AND (detalle_asistencia_alumno.CodigoAlumno='{$this->CodigoAlumno}' or alumnos.CodAlumnoSira='{$this->CodAlumnoSira}')";
+        WHERE evento.idevento in ('".$todos_idsuventos."') AND (detalle_asistencia_alumno.CodigoAlumno='{$this->CodigoAlumno}' or alumnos.CodAlumnoSira='{$this->CodAlumnoSira}')";
 //       echo $sql,exit;
         $sth = $this->db->prepare($sql);
         $sth->execute();
@@ -2068,8 +2068,7 @@ function getDatos_grilla_solicitudes_eu() {
         $sql = "SELECT *
         FROM
         evento
-        WHERE evento.idevento_padre is not null and (evento.idtipo_evento=3  or evento.idtipo_evento=4)";
-
+        WHERE evento.CodigoSemestre='{$this->CodigoSemestre}' and evento.idevento_padre is not null and (evento.idtipo_evento=3  or evento.idtipo_evento=4)";
         $sth = $this->db->prepare($sql);
         $sth->execute();
         return $sth->fetchAll();

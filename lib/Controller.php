@@ -1537,7 +1537,7 @@ public function grilla_miproyecto2($p) {
         $obj->CodAlumnoSira = $p['CodAlumnoSira'];
         $data = $obj->mostrar_record_asistencias_tutoria();
         $data_Eu_Ps = $obj->mostrar_record_asistencias_Eu_Ps();
-       echo "<pre>"; print_r($data_Eu_Ps);exit;
+//       echo "<pre>"; print_r($data_Eu_Ps);exit;
         if (empty($data['CodigoAlumno'])) {
             return "No Se Encontro El Alumno Asignado o el Semestre como Parametros";
         } else {

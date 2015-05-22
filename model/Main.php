@@ -1996,6 +1996,8 @@ function getDatos_grilla_solicitudes_eu() {
         $sth->execute();
         return $sth->fetchAll();
     } public function mostrar_record_asistencias_tutoria() {
+        $ideventos_tutoria= $this->get_evento_tutoria_this_ultimo_semestre();
+        $ideventos_tutoria = implode(",", $ideventos_tutoria);
         $sql = "SELECT
         alumnos.CodigoAlumno,
         alumnos.NombreAlumno,
@@ -2011,7 +2013,7 @@ function getDatos_grilla_solicitudes_eu() {
         Inner Join alumnos ON detalle_asignacion_tutoria.CodigoAlumno = alumnos.CodigoAlumno
         Left Join detalle_asistencia_alumno_tutoria ON detalle_asistencia_alumno_tutoria.CodigoAlumno = alumnos.CodigoAlumno 
         Inner Join semestreacademico ON detalle_asignacion_tutoria.CodigoSemestre = semestreacademico.CodigoSemestre
-        where detalle_asignacion_tutoria.CodigoSemestre='{$this->CodigoSemestre}' and (alumnos.CodAlumnoSira='{$this->CodAlumnoSira}' or alumnos.CodigoAlumno='{$this->CodigoAlumno}')";
+        where detalle_asignacion_tutoria.CodigoSemestre='{$this->CodigoSemestre}' and (alumnos.CodAlumnoSira='{$this->CodAlumnoSira}' or alumnos.CodigoAlumno='{$this->CodigoAlumno}') and detalle_asistencia_alumno_tutoria.idevento in (".$ideventos_tutoria.")";
 //       echo $sql;exit;
         $sth = $this->db->prepare($sql);
         $sth->execute();
@@ -2051,6 +2053,17 @@ function getDatos_grilla_solicitudes_eu() {
         return $sth->fetch();
     }
 
+    function get_evento_tutoria_this_ultimo_semestre() {
+        $sql="select idevento from evento WHERE evento.CodigoSemestre='{$this->CodigoSemestre}' and evento.idtipo_evento='1'";
+        $sth = $this->db->prepare($sql);
+        $sth->execute();
+        $eventos_tutoria=$sth->fetchAll();
+        $fields = array();
+        foreach ($eventos_tutoria as $key => $value) {
+            array_push($fields, $value['idevento']);
+        }
+        return $fields;
+    }
     function get_data_sub_eventos_Eu_Ps($param) {
         $sql = "SELECT *
         FROM

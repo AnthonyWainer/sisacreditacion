@@ -31,7 +31,7 @@ foreach ($rows as $key => $value) {
   $nros += $value[7];
   $porc += $value[6];
 }        
-echo "numero de semanas = ".$nros;
+#echo "numero de semanas = ".$nros;
 function sem($sema,$s,$por){
     if ($sema<$s) {
       ?>
@@ -44,7 +44,7 @@ function sem($sema,$s,$por){
       <button type="button" class="btn btn-default agU">agregar Unidad</button>
       <?php
     }else{
-      echo "ya esta lleno";
+      #echo "ya esta lleno";
     }
 }
               foreach ($uni as $key => $value) {
@@ -54,7 +54,7 @@ function sem($sema,$s,$por){
                 }else{
                   sem($nros,18,$porc);
                 }
-                echo "<br>semanas totales= ".$semanas;
+                #echo "<br>semanas totales= ".$semanas;
               }
 
 

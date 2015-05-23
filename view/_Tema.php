@@ -67,6 +67,7 @@
             Cam= $('.'+abc+' .Cam').val();
             Tem= $('.'+abc+' .Tem').val();
            $.post('index.php', 'controller=cursosemestre&action=editarTema&Campo=' +Cam+'&Tema='+Tem+'&Editar='+Edit, function(data) {
+            alertify.success("dato ingresado");  
             });
         });
 

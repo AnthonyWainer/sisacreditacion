@@ -1,4 +1,16 @@
-<h4>EVALUACIÓN</h4> <br>
+<?php $p=0; foreach ($rows as $key => $value) { 
+        $p += $value[3];
+    }
+    $po = 100-$p;
+    if ($po!=0) {  ?>
+    <button type="button" class="btn btn-default ag">agregar</button>
+    <input type="number" id="Poreva" value="<?php echo $po; ?>">
+
+<?php        
+    }
+?>
+
+
 <table class="table eva" id="eval">
 	<thead>
 		<tr>
@@ -6,6 +18,7 @@
 			<th>Descripcion</th>
 			<th>fecha</th>
 			<th>ponderado</th>
+            <th>eliminar</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -14,18 +27,17 @@
 				<td >
 					<input type="hidden" id="ideva" value="<?php echo $value[4]?>" />
 				 <?php 
-                mysql_connect("localhost", "root", "");
-                mysql_select_db("sisacreditacion");
-               $consulta=mysql_query("SELECT idtipo_evaluacion,descripcion from tipo_evaluacion  ");
+                 
                echo "<select style='border:none; background:#EAF8FC; width:300px;' class='form-control k2' id='idtipo_evaluacion'>";
-                   while($registro=mysql_fetch_row($consulta)){
-                   	 if ($value[0] != $registro[0] ) {
-                       echo "<option value='".$registro[0]."'>".$registro[1]."</option>";
+               foreach ($eva as $key => $ev) { 
+                   if ($value[0] != $ev[0] ) {
+                       echo "<option value='".$ev[0]."'>".$ev[1]."</option>";
                    }else{
-                   		echo "<option selected value='".$registro[0]."'>".$registro[1]."</option>";
+                   		echo "<option selected value='".$ev[0]."'>".$ev[1]."</option>";
                    }
-                    }
+                }
                 echo "</select>";   
+            
          ?>    
 				</td>
 				<td>
@@ -37,6 +49,7 @@
 				<td>
 				<?php echo (utf8_encode($value[3]));?>
 				</td>
+                <td><p class="col-md-1 eli" onclick="eliEva(<?php echo $value[4]?>,<?php echo $value[5]?>)" title="eliminar unidad"><i class="fa fa-trash-o"></i></p></td>
 			</tr>
 <?php } ?>
 	</tbody>
@@ -64,4 +77,17 @@
 	                          });
         });
     });
+function eliEva(id,uni){
+    //alert("huanaco"+id);
+    alertify.confirm("¿ESTÁS SEGURO DE ELIMINAR LA EVALUACIÓN?", function (e) {
+    if (e) {
+        $.post('index.php', 'controller=evaluacion&action=delete&id=' +id, function(data) {
+            eva(uni);
+            alertify.success("EVALUACIÓN ELIMINADA");  
+        });
+    } else {
+        alertify.success("EVALUACIÓN NO ELIMINADA");  
+    }
+    });
+}    
 </script>

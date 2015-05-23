@@ -25,28 +25,7 @@ class tema extends Main{
         $stmt->execute();
         return $stmt->fetchObject();
     }
-    function insert($_P ) {
-         $sentencia=$this->db->query("SELECT MAX(idtema) as cant from tema");         
-         $ct=$sentencia->fetch();      
-          $xd=1+ (int)$ct['cant'];
-          //$xd="F".$xd;
-        $sql = $this->Query("sp_tema_iu(0,:p1,:p2,:p3,:p4,:p5,:p6,:p7,:p8)");
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(':p1', $xd , PDO::PARAM_INT);
-        $stmt->bindValue(':p2', $_P['idunidad'] , PDO::PARAM_INT);
-        $stmt->bindValue(':p3', $_P['semana'] , PDO::PARAM_STR);
-        $stmt->bindValue(':p4', $_P['contenido'] , PDO::PARAM_STR);
-        $stmt->bindValue(':p5', $_P['conceptual'] , PDO::PARAM_STR);
-        $stmt->bindValue(':p6', $_P['procedimental'] , PDO::PARAM_STR);
-        $stmt->bindValue(':p7', $_P['actitudinal'] , PDO::PARAM_STR);
-        $stmt->bindValue(':p8', $_P['competencia'] , PDO::PARAM_STR);
-      
-       
-             
-        $p1 = $stmt->execute();
-        $p2 = $stmt->errorInfo();
-        return array($p1 , $p2[2]);
-    }
+
     function update($_P ) {
         $sql = $this->Query("sp_tema_iu(1,:p1,:p2,:p3,:p4,:p5,:p6,:p7,:p8)");
         $stmt = $this->db->prepare($sql);
@@ -83,6 +62,32 @@ class tema extends Main{
         $stmt->bindValue(':p1', $tem, PDO::PARAM_INT);
         $stmt->bindValue(':p2', $edit, PDO::PARAM_STR);
         $p1 = $stmt->execute();
+    }
+
+    function insert($_P){
+            $sentencia4=$this->db->query("SELECT MAX(idunidad) as cuni from unidad");         
+            $ct4=$sentencia4->fetch();    
+            $ultimaunidad = $ct4["cuni"];
+            $seman =($_P["duracion"]);
+            for ($k=0; $k<$seman; $k++) { 
+                    $sentencia5=$this->db->query("SELECT MAX(idtema) as tem from tema");         
+                    $ct5=$sentencia5->fetch();      
+                    $xd4=1+ (int)$ct5['tem'];
+                    $d=$k+1;
+                    $c=$c + 1;  
+                    $sem='semana '.$c;
+                    $sql = $this->Query("sp_tema_iu(0,:p1,:p2,:p3,:p4,:p5,:p6,:p7)");
+                    $stmt4 = $this->db->prepare($sql);
+                    $stmt4->bindValue(':p1', $xd4 , PDO::PARAM_INT);
+                    $stmt4->bindValue(':p2', $ultimaunidad , PDO::PARAM_INT);
+                    $stmt4->bindValue(':p3', $sem , PDO::PARAM_STR);
+                    $stmt4->bindValue(':p4', '' , PDO::PARAM_STR);
+                    $stmt4->bindValue(':p5', '' , PDO::PARAM_STR);
+                    $stmt4->bindValue(':p6', '' , PDO::PARAM_STR);
+                    $stmt4->bindValue(':p7', '' , PDO::PARAM_STR);
+                    $p3 = $stmt4->execute();
+                    $p3 = $stmt4->errorInfo();
+            }  
     }
 }
 ?>

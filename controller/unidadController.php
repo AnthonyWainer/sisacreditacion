@@ -3,6 +3,7 @@
 require_once '../lib/Controller.php';
 require_once '../lib/View.php';
 require_once '../model/unidad.php';
+require_once '../model/tema.php';
 
 class unidadController extends Controller {
 
@@ -118,7 +119,9 @@ class unidadController extends Controller {
 
     public function create() {
         $obj = new unidad();
+        $tem = new tema();
         $obj->insert($_POST);
+        $tem-> insert($_POST);
     }
 
     public function getUnidad() {

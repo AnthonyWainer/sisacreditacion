@@ -112,6 +112,7 @@ function sem($sema,$s,$por){
             </tbody>
         </table>
     </div>
+    <input type="hidden" id="CU" name="" value="<?php echo $value[1]?>">
 <p class="col-md-1 eli" onclick="eliUni(<?php echo $value[1]?>)" title="eliminar unidad"><i class="fa fa-trash-o"></i></p>
 </div>
 
@@ -133,6 +134,8 @@ function sem($sema,$s,$por){
             <div class="panel-body temas"></div>
          </div>
         <div class="kmodal-footer" style="text-align: left;">
+            <h4>EVALUACIÓN</h4> 
+            
             <div class="evaluacion"></div>
          </div>
       </div>
@@ -147,19 +150,36 @@ $(".agU").click(function(){
   porc = $(".porc").val();
   $.post('index.php', 'controller=unidad&action=create&idsilabo=' +idsi+'&nombreunidad='+nombre+'&duracion='+nroT+'&porcentaje='+porc, function(data) {
         unidad();
+        alertify.success("SE INSERTO UNIDAD");  
   });
 });
 
 
-
-
+function eva(unidad,tip){
+  $.post('index.php', 'controller=cursosemestre&action=getEvaluacion&Codigo=' +unidad, function(data) {
+      $(".evaluacion").empty().append(data);
+      $(".ag").attr('onclick','hol('+unidad+')');
+  });
+}
+function hol(uni){
+  p = $("#Poreva").val();
+  $.post('index.php', 'controller=evaluacion&action=insertEvaluacion&idunidad=' +uni+'&ponderado='+p, function(data) {
+      eva(uni);
+  });
+}
 
 function eliUni(id){
     //alert("huanaco"+id);
-    $.post('index.php', 'controller=unidad&action=delete&id=' +id, function(data) {
-        unidad();
+    alertify.confirm("¿ESTÁS SEGURO DE ELIMINAR LA UNIDAD?", function (e) {
+    if (e) {
+        $.post('index.php', 'controller=unidad&action=delete&id=' +id, function(data) {
+            unidad();
+            alertify.success("UNIDAD ELIMINADA");  
+        });
+    } else {
+        alertify.success("UNIDAD NO ELIMINADA");  
+    }
     });
-
 }
 
 $(document).ready(function(){
@@ -178,9 +198,8 @@ $('.codunidad').live("click",function(){
             $.post('index.php', 'controller=cursosemestre&action=getTema&Codigo=' +unidad+'&option='+opt, function(data) {
                 $(".temas").empty().append(data);
             });
-            $.post('index.php', 'controller=cursosemestre&action=getEvaluacion&Codigo=' +unidad, function(data) {
-                $(".evaluacion").empty().append(data);
-            });
+            eva(unidad);
+            
         }else{
           $('#en'+y).appendTo('.modal-title2');
           $('.modal-title2 .table').removeClass('enUni');

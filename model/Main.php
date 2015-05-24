@@ -874,7 +874,7 @@ Inner Join evento ON evento.idevento = detalle_asistencia_alumno_tutoria.idevent
     }
 
     function getEvaluacion() {
-        $query = "SELECT idtipo_evaluacion, descripcionevaluacion, fecha, ponderado,idevaluacion FROM `evaluacion`
+        $query = "SELECT idtipo_evaluacion, descripcionevaluacion, fecha, ponderado,idevaluacion,idunidad FROM `evaluacion`
                   WHERE idunidad= {$this->criterio} ";
         $sth = $this->db->prepare($query);
         $sth->execute();

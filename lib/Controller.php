@@ -3,6 +3,7 @@
 require_once '../model/Main.php';
 require_once '../model/bibliografia.php';
 require_once '../model/semestre.php';
+require_once '../model/evaluacion.php';
 
 
 class ControllerException extends Exception {
@@ -914,9 +915,11 @@ public function ListaPdf_ps($idevento) {
 
     public function evaluacion_recibir($p) {
         $obj = new Main();
+        $eva = new evaluacion();
         $obj->criterio = $p['criterio'];
         $data = array();
         $data['rows'] = $obj->getEvaluacion();
+        $data['eva']  = $eva->getTipoEva();
         $data['disabled'] = $p['disabled'];
         $view = new View();
         $view->setData($data);

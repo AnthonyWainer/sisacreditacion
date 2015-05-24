@@ -10,3 +10,12 @@
 #tabla tbody tr{
   height: 30px;
 }
+
+    .eli{
+       color:red;
+       font-size: 22px;
+       cursor: pointer;
+    }
+    .eli:hover{
+       color: blue;
+    }

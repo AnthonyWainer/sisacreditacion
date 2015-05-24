@@ -7,6 +7,7 @@
 <script type="text/javascript" src="lib/alertify.js"></script>
 <link rel="stylesheet" href="themes/alertify.core.css"  type="text/css"/>
 <link rel="stylesheet" href= "themes/alertify.default.css"  type="text/css"/>
+<link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
   <?php 
         foreach ($rows22 as $key => $value) { ?>
         <?php    echo $value[0]; echo $value[1]; echo $value[2]; echo $value[3]; echo $value[4];?> <br>
@@ -73,13 +74,18 @@
             <input type="hidden" id="semes" value="<?php echo $value[4] ; ?>">
               <br>
 
+          <?php 
 
-           <!--- <button id="biblio" type="button" class="btn btn-default" onClick="bib()">Agregar</button> -->
+
+           ?>
+          <button id="biblio" type="button" class="btn btn-default" onClick="bib()">Agregar</button> 
+
                    <table id="bibl" class='table table-hover table-bordered' style="width:800px; margin-left:-70px;">
                             <thead>
                               <tr style='background-color:#EAF8FC;font-size:12px;text-transform:uppercase;color:#000'>
                               <th>tipo de bibliografía</th>
                               <th>Descripción</th>
+                              <th>Eliminar</th>
                               </tr>
                             </thead>
 
@@ -106,9 +112,10 @@
                                       ?>      
                                     </td>
 
-                                    <td><input type='text' id="<?php echo $asd; $asd++;?>"   name='descripcionBibio[]' value="<?php echo utf8_encode($value[2]); ?>"
+                                    <td><input type='text' id="<?php echo $asd; $asd++;?>"   name='descripcionBibio[]' value="<?php echo $value[2]; ?>"
                                       class='text ui-widget-content ui-corner-all' style='width: 100%; text-align: left;'/>
                                     </td>
+                                    <td width="50px"><p class="col-md-1 eli" onclick="eliBib(<?php echo $value[2]; ?>)" title="eliminar bibliografia"><i class="fa fa-trash-o"></i></p></td>
                                   </tr>
                         <?php }   }?>
                             </tbody>

@@ -30,7 +30,9 @@ class evaluacion extends Main{
         $stmt->execute();
         return $stmt->fetchObject();
     }
-    function insert($_P ) {
+    function insert($_P) {
+        
+        print_r($_P);
         $sentencia=$this->db->query("SELECT MAX(idevaluacion) as cant from evaluacion");         
         $ct=$sentencia->fetch();      
         $xd=1+(int)$ct['cant'];
@@ -38,14 +40,14 @@ class evaluacion extends Main{
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':p1', $xd , PDO::PARAM_INT);
         $stmt->bindValue(':p2', $_P['idunidad'] , PDO::PARAM_INT);
-        $stmt->bindValue(':p3', $_P['idtipo_evaluacion'] , PDO::PARAM_INT);
-        $stmt->bindValue(':p4', $_P['descripcionevaluacion'] , PDO::PARAM_STR);
-        $stmt->bindValue(':p5', $_P['fecha'] , PDO::PARAM_STR);
-        $stmt->bindValue(':p6', $_P['ponderado'] , PDO::PARAM_STR);
+        $stmt->bindValue(':p3', 1 , PDO::PARAM_INT);
+        $stmt->bindValue(':p4', '', PDO::PARAM_STR);
+        $stmt->bindValue(':p5', '', PDO::PARAM_STR);
+        $stmt->bindValue(':p6', $_P['ponderado'] , PDO::PARAM_INT);
         $p1 = $stmt->execute();
-        $p2 = $stmt->errorInfo();
-        return array($p1 , $p2[2]);
+        echo "llegue con  alicia";
     }
+
     function update($_P ) {
         
         $sql = $this->Query("sp_eva_iu(1,:p1,:p2,:p3,:p4,:p5,:p6)");
@@ -64,14 +66,6 @@ class evaluacion extends Main{
         $p2 = $stmt->errorInfo();
         return array($p1 , $p2[2]);
     }
-    function delete($p) {
-        $stmt = $this->db->prepare("DELETE FROM evaluacion WHERE idevaluacion = :p1");
-        $stmt->bindValue(':p1', $p, PDO::PARAM_INT);
-        $p1 = $stmt->execute();
-        $p2 = $stmt->errorInfo();
-        return array($p1 , $p2[2]); 
-    }
-
     //aki toy
     function actualizar_evaluacion_tipo($_P) {
         echo "<pre>"; print_r ($_P);
@@ -92,6 +86,19 @@ class evaluacion extends Main{
         $stmt->bindValue(':p1', $eva, PDO::PARAM_INT);
         $p1 = $stmt->execute();
     }    
+    function getTipoEva() {
+        $sth = $this->db->prepare("SELECT idtipo_evaluacion,descripcion FROM tipo_evaluacion");
+        $sth->execute();
+        return $sth->fetchAll();
+    }
+    
+    function delete($p) {
+        $stmt = $this->db->prepare("DELETE FROM evaluacion WHERE idevaluacion = :p1");
+        $stmt->bindValue(':p1', $p, PDO::PARAM_INT);
+        $p1 = $stmt->execute();
+        $p2 = $stmt->errorInfo();
+        return array($p1 , $p2[2]);
+    }
 }
 ?>
 

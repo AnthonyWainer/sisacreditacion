@@ -24,7 +24,10 @@ class evaluacionController extends Controller {
         $view->setLayout( '../template/Layout.php' );
         $view->render();
     }
-    
+    public function insertEvaluacion(){
+        $obj = new evaluacion();
+        $obj->insert($_POST); 
+    }
     public function edit() {
         $obj = new evaluacion();
         $data = array();
@@ -78,22 +81,7 @@ class evaluacionController extends Controller {
             }
         }
     }
-    public function delete(){
-        $obj = new evaluacion();
-        $p = $obj->delete($_GET['id']);
-        if ($p[0]){
-            header('Location: index.php?controller=evaluacion');
-        } else {
-        $data = array();
-        $view = new View();
-        $data['msg'] = $p[1];
-        $data['url'] =  'index.php?controller=evaluacion';
-        $view->setData($data);
-        $view->setTemplate( '../view/_Error_App.php' );
-        $view->setLayout( '../template/Layout.php' );
-        $view->render();
-        }
-    }
+
     public function create() {
         $data = array();
         $view = new View();
@@ -105,6 +93,10 @@ class evaluacionController extends Controller {
         $view->setTemplate( '../view/evaluacion/_Form.php' );
         $view->setLayout( '../template/Layout.php' );
         $view->render();
+    }
+    public function delete() {
+        $obj = new evaluacion();
+        $obj->delete($_POST['id']);
     }
 	
     public function getProfesores()

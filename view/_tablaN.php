@@ -152,7 +152,7 @@
 								<?php   $j++; } ?>
 
 							<?php }?>
-                                                                                 <td><?php $nota_tutoria=$rows_notas_tutoria[$alum]['nota_tutoria'];if(is_numeric($nota_tutoria)) {if($nota_tutoria<=10){echo"<span class='colorD'> ".$nota_tutoria."</span>";}else{echo"<span class='colorA'> ".$nota_tutoria."</span>";}} ?></td>
+                                                                                 <td><?php $nota_tutoria=$rows_notas_tutoria[$alum]['nota_tutoria'];if(is_numeric($nota_tutoria)) {if($nota_tutoria<=10){echo"<span class='colorD'> ".$nota_tutoria."</span>";}else{echo"<span class='colorA'> ".$nota_tutoria."</span>";}}else{echo "<span class='colorD'>0</span>";} ?></td>
 							<td  class="tnota">
                                                            
 								<input class='form-control nota' id="<?php echo $i.'p'; ?>"disabled type="text" name="" value="" placeholder="">

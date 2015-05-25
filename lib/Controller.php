@@ -1,7 +1,6 @@
 <?php
 
 require_once '../model/Main.php';
-require_once '../model/bibliografia.php';
 require_once '../model/semestre.php';
 require_once '../model/evaluacion.php';
 
@@ -744,7 +743,6 @@ public function ListaPdf_ps($idevento) {
     public function detalle_silabus($p) {
 
         $obj = new Main();
-        $bib = new bibliografia();
         
 //        $obj->table = $p['table'];
         $obj->filtro = $p['filtro'];
@@ -755,11 +753,8 @@ public function ListaPdf_ps($idevento) {
 
         $data = array();
         $data['rows'] = $obj->getdatos_Silabu();
-        $data['rows2'] = $obj->getBibliografia();
         $data['rows3'] = $obj->getEvaluacion();
         $data['rows4'] = $obj->getTipEva();
-        $data['rows5'] = $bib->getTipoBibliografia();
-
 
         $data['disabled'] = $p['disabled'];
         $view = new View();

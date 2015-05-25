@@ -35,10 +35,10 @@ class bibliografia extends Main{
         $sql = $this->Query("sp_biblio_iu(0,:p1,:p2,:p3,:p4,:p5)");
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':p1', $xd , PDO::PARAM_INT);
-        $stmt->bindValue(':p2', $_P['referencia'] , PDO::PARAM_STR);
-        $stmt->bindValue(':p3', $_P['identificador'] , PDO::PARAM_INT);
-        $stmt->bindValue(':p4', $_P['descripcion'] , PDO::PARAM_STR);
-        $stmt->bindValue(':p5', $_P['idtipo_bibliografia'] , PDO::PARAM_INT);
+        $stmt->bindValue(':p2', $_P['ids'] , PDO::PARAM_STR);
+        $stmt->bindValue(':p3', 1 , PDO::PARAM_INT);
+        $stmt->bindValue(':p4', '' , PDO::PARAM_STR);
+        $stmt->bindValue(':p5', 1 , PDO::PARAM_INT);
         
         $p1 = $stmt->execute();
         $p2 = $stmt->errorInfo();
@@ -61,7 +61,7 @@ class bibliografia extends Main{
     function delete($p) {
         $sql = $this->Query("sp_biblio_sd(1,:p1)");
         $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(':p1', $p, PDO::PARAM_INT);
+        $stmt->bindValue(':p1', $p['ids'], PDO::PARAM_INT);
         $p1 = $stmt->execute();
         $p2 = $stmt->errorInfo();
         return array($p1 , $p2[2]);
@@ -87,19 +87,29 @@ class bibliografia extends Main{
     //aki toy
     function actualizar_bibliografia_tipo($_P) {
         echo "<pre>"; print_r ($_P);
-        $biblio=$_P["Bibliografia"];
-        $cam= $_P["Campo"];
-        $edit= $_P["Editar"];
+        $tipo= $_P["tipo"];
+        $idbibliog= $_P["idbibliog"];
 
 
-        $stmt = $this->db->prepare("UPDATE bibliografia SET ".$cam." = :p2
+        $stmt = $this->db->prepare("UPDATE bibliografia SET idtipo_bibliografia = :p2
                                     WHERE idbibliografia = :p1");
-        $stmt->bindValue(':p1', $biblio, PDO::PARAM_INT);
-        $stmt->bindValue(':p2', $edit, PDO::PARAM_STR);
+        $stmt->bindValue(':p1', $idbibliog, PDO::PARAM_INT);
+        $stmt->bindValue(':p2', $tipo, PDO::PARAM_STR);
         $p1 = $stmt->execute();
     }
     function getTipoBibliografia() {
+
         $query = "SELECT descripcion_tipobibliografia,idtipo_bibliografia  from tipo_bibliografia";
+        $sth = $this->db->prepare($query);
+        $sth->execute();
+        return $sth->fetchAll();
+    }
+    function getBibliografia($_P) {
+        $query = "SELECT bi.idbibliografia, bi.referencia, bi.descripcion, tb.idtipo_bibliografia,
+                        tb.descripcion_tipobibliografia, bi.identificador
+                 FROM bibliografia as bi inner join tipo_bibliografia as tb on
+                    tb.idtipo_bibliografia = bi.idtipo_bibliografia
+                     WHERE identificador = 1 and referencia = ".$_P['ids']." ORDER BY bi.idbibliografia DESC";
         $sth = $this->db->prepare($query);
         $sth->execute();
         return $sth->fetchAll();

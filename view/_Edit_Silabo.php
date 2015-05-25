@@ -9,9 +9,8 @@
 <link rel="stylesheet" href= "themes/alertify.default.css"  type="text/css"/>
 <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
   <?php 
-        foreach ($rows22 as $key => $value) { ?>
-        <?php    echo $value[0]; echo $value[1]; echo $value[2]; echo $value[3]; echo $value[4];?> <br>
-        <?php }?>
+        foreach ($rows as $key => $value) {
+        }?>
 
 <!--ALUMNO Comienza-->
            <!--
@@ -23,7 +22,7 @@
     <ul class="nav nav-tabs" id="myTab" >
         <li class="active"><a href="#obGen" data-toggle="tab" >Objetivos Generales</a></li>
         <li><a href="#unidad" data-toggle="tab" class="unidad">Unidad</a></li>
-        <li><a href="#bibliografia" data-toggle="tab">Bibliografia</a></li>
+        <li><a href="#bibliografia" onclick="bi(<?php echo $value[6]; ?>)" data-toggle="tab">Bibliografia</a></li>
         <li><a href="#generarsilabo" data-toggle="tab">Generar Sílabo</a></li>
     </ul> 
     </div>
@@ -69,9 +68,12 @@
             <div id="unidades"></div>
         </div>
 <!--        unidad fin-->
-        <div class="tab-pane" id="bibliografia">
- 
 
+        <div class="tab-pane" id="bibliografia" >
+          <input  type="hidden" id="curs" value="<?php echo $value[5] ;?>"/>
+          <input type="hidden" id="semes" value="<?php echo $value[4] ; ?>">
+          <br>
+          <div id="bibliografias"></div>
         </div>
         <div class="tab-pane" id="generarsilabo">
           <br>

@@ -36,8 +36,11 @@ $( "#su" ).click(function() {
   $("#soyunid").addClass("su");
 });
 
-
-
+function bi(id){
+  $.post('index.php', 'controller=bibliografia&action=verBiblio&ids='+id, function(data) {
+         $("#bibliografias").html(data);
+  }); 
+}
 //ingresar unidades
 var ii=2;
 function agregarUni(){

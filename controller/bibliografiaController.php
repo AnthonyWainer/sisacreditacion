@@ -3,6 +3,7 @@ require_once '../lib/Controller.php';
 require_once '../lib/View.php';
 require_once '../model/bibliografia.php';
 
+
 class bibliografiaController extends Controller {    
     public function index() 
     {
@@ -42,51 +43,12 @@ class bibliografiaController extends Controller {
     }
     public function save(){
         $obj = new bibliografia();
-        if ($_POST['idbibliografia']=='') {
-            $p = $obj->insert($_POST);
-            if ($p[0]){
-                header('Location:index.php?controller=bibliografia');
-            } else {
-            $data = array();
-            $view = new View();
-            $data['msg'] = $p[1];
-            $data['url'] ='index.php?controller=bibliografia';
-            $view->setData($data);
-            $view->setTemplate( '../view/_Error_App.php' );
-            $view->setLayout( '../template/Layout.php' );
-            $view->render();
-            }
-        } else {
-            $p = $obj->update($_POST);
-            if ($p[0]){
-                header('Location: index.php?controller=bibliografia');
-            } else {
-            $data = array();
-            $view = new View();
-            $data['msg'] = $p[1];
-            $data['url'] = 'index.php?controller=bibliografia';
-            $view->setData($data);
-            $view->setTemplate( '../view/_Error_App.php' );
-            $view->setLayout( '../template/Layout.php' );
-            $view->render();
-            }
-        }
+        $obj->insert($_POST);
     }
     public function delete(){
         $obj = new bibliografia();
-        $p = $obj->delete($_GET['id']);
-        if ($p[0]){
-            header('Location: index.php?controller=bibliografia');
-        } else {
-        $data = array();
-        $view = new View();
-        $data['msg'] = $p[1];
-        $data['url'] =  'index.php?controller=bibliografia';
-        $view->setData($data);
-        $view->setTemplate( '../view/_Error_App.php' );
-        $view->setLayout( '../template/Layout.php' );
-        $view->render();
-        }
+        $obj->delete($_POST);
+
     }
     public function create() {
         $data = array();
@@ -102,5 +64,19 @@ class bibliografiaController extends Controller {
         $ofic = $this->Select_ajax(array('id'=>'idcriterio','name'=>'idcriterio','table'=>'vista_bibliografia','filtro'=>'idtipo_bibliografia','criterio'=>$_POST['idtipo_bibliografia']));
         echo $ofic;
     }
+    public function verBiblio($p) {
+
+        $bib = new bibliografia();
+
+        $data = array();
+        $data['rows2'] = $bib->getBibliografia($_POST);
+        $data['rows5'] = $bib->getTipoBibliografia();
+
+        $view = new View();
+        $view->setData($data);
+        $view->setTemplate('../view/bibliografia/_biblio.php');
+        
+        echo $view->renderPartial();
+    }    
 }
 ?>

@@ -2,7 +2,7 @@
 
 require_once '../lib/Controller.php';
 require_once '../lib/View.php';
-require_once '../model/evento_proyeccion_social_1.php';
+require_once '../model/evento_proyeccion_social.php';
 require_once '../model/ubigeos.php';
 
 class evento_proyeccion_socialController extends Controller {

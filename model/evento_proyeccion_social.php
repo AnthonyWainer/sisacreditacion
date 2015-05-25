@@ -261,6 +261,7 @@ WHERE evento.idevento_padre='".$idevento."'";
 
     //agrag_seps--agregarsubeventosdeproyeccionsocial
     function save__sub_eventos($agreg_seps) {
+      
 //       echo "<div align='left'><pre>"; print_r($agreg_seps);echo "</div>";exit;
 
         $cod_semes = $this->mostrar_semestre_ultimo();

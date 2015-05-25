@@ -25,7 +25,7 @@ $(function(){
             $("#texlumno").fadeOut(150);
         });
 });
-</script>
+</script>asd
 <form id="frm_alumno" ><span style="display: none" id="texlumno">ACTUALIZANDO....</span>
     <input type="button" value="ACTUALIZAR ALUMNOS" id="acc">
     <div  style="overflow-y: auto; max-height: 510px; max-width: 100%">

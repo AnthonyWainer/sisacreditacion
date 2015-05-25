@@ -152,7 +152,7 @@ INNER JOIN semestreacademico ON semestreacademico.CodigoSemestre = carga_academi
 INNER JOIN departamentoacademico ON profesores.CodigoDedicacion = departamentoacademico.CodigoDptoAcad
 LEFT JOIN detalle_asistencia_docente ON detalle_asistencia_docente.CodigoCurso = cursos.CodigoCurso and detalle_asistencia_docente.idevento='" . $evento . "'
 WHERE carga_academica.CodigoSemestre='".$sem."' AND profesores.CodigoDptoAcad='07' AND profesores.CodigoProfesor='" . $profesor . "'";
-        echo $sql;Exit;
+//        echo $sql;Exit;
         $statement = $this->db->prepare($sql);
         $statement->execute();
         $data = $statement->fetchAll();

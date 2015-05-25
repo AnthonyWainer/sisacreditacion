@@ -86,6 +86,7 @@ INNER JOIN tipo_evento ON evento.idtipo_evento = tipo_evento.idtipo_evento
 INNER JOIN cargo_asistencia_evento ON detalle_asistencia_alumno.id_cargo = cargo_asistencia_evento.id_cargo
 WHERE evento.idevento='" . $idevento . "'"
         ;
+//        echo $sql;Exit;
         $statement = $this->db->prepare($sql);
         $statement->execute();
         $obj = $statement->fetchAll();

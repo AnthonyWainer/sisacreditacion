@@ -16,7 +16,8 @@ class asignacionPS extends Main {
                         evento
  Inner Join tipo_evento ON tipo_evento.idtipo_evento = evento.idtipo_evento
  Inner Join clasificacion_evento ON clasificacion_evento.id_clasificacion_evento = tipo_evento.id_clasificacion_evento
-    where  evento.CodigoSemestre='" . $semestre_ultimo . "' and  (clasificacion_evento.id_clasificacion_evento=2  and  tipo_evento.idtipo_evento= 5) and evento.idevento_padre is null and " . $c . " like :query";
+    where  evento.CodigoSemestre='" . $semestre_ultimo . "' and  (clasificacion_evento.id_clasificacion_evento=2  and  tipo_evento.idtipo_evento= 3) and evento.idevento_padre is null and " . $c . " like :query";
+//       echo $sql;exit;
         $param = array(array('key' => ':query', 'value' => "%$query%", 'type' => 'STR'));
         $data['total'] = $this->getTotal($sql, $param);
         $data['rows'] = $this->getRow($sql, $param, $p);

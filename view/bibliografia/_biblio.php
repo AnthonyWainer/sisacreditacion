@@ -7,9 +7,16 @@
     });
   }
   function eliminarBiblio(idb,ids){
-    $.post('index.php', 'controller=bibliografia&action=delete&ids='+idb, function(data) {
-           bi(ids);
-           alertify.success("bibliografia eliminada");
+
+    alertify.confirm("¿ESTÁS SEGURO DE ELIMINAR LA BIBLIOGRAFÍA?", function (e) {
+    if (e) {
+        $.post('index.php', 'controller=bibliografia&action=delete&ids='+idb, function(data) {
+               bi(ids);
+               alertify.error("bibliografia eliminada");
+        });
+    } else {
+        alertify.log("bibliografia no eliminada");  
+    }
     });
   }
       $('.dtp input').blur(function(){

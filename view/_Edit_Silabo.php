@@ -19,52 +19,48 @@
 <?php if (isset($_SESSION["perfil"]) && ($_SESSION["perfil"] == 'PROFESOR')) { ?>
     <!--INICIO foreach-->
     <div id="ampliar">
-    <ul class="nav nav-tabs" id="myTab" >
-        <li class="active"><a href="#obGen" data-toggle="tab" >Objetivos Generales</a></li>
-        <li><a href="#unidad" data-toggle="tab" class="unidad">Unidad</a></li>
-        <li><a href="#bibliografia" onclick="bi(<?php echo $value[6]; ?>)" data-toggle="tab">Bibliografia</a></li>
-        <li><a href="#generarsilabo" data-toggle="tab">Generar Sílabo</a></li>
+    <!-- <ul class="nav nav-tabs" id="myTab" > -->
+    <ul class="nav nav-tabs nav-pills nav-stacked col-md-2 naa">
+      <li class="active"><a href="#sumilla" data-toggle="tab" >Sumilla</a></li>
+      <li><a href="#competencia" data-toggle="tab" >Competencia</a></li>
+      <li><a href="#metodologia" data-toggle="tab" >Metodologia</a></li>
+      <li ><a href="#objetivo" data-toggle="tab" >Objetivo</a></li>
+      <li><a href="#unidad" data-toggle="tab" class="unidad">Unidad</a></li>
+      <li><a href="#bibliografia" onclick="bi(<?php echo $value[6]; ?>)" data-toggle="tab">Bibliografia</a></li>
+      <li><a href="#generarsilabo" data-toggle="tab">Generar Sílabo</a></li>
     </ul> 
     </div>
     <?php 
    if($rows){
     foreach ($rows as $key => $value) { $sem=$value[4]; ?>
 
-        <div class="tab-content col-md-11">
-            <div class="tab-pane active" id="obGen" align="justify">
-            <br>
-             <table class="table table-hover table-bordered" style="width:800px; margin-left:-70px;">
-                <tbody>
-                   <tr >
-                       <td  width="50%"><label>competencia</label>
-                       <p id="comp" data-toggle="modal" data-target="#myModal" class="compet"><?php echo ($value[0]) ?></p> 
-                       </td>
-                       <td >
-                         <label>metodologia</label>
-                         <p id="met" data-toggle="modal" data-target="#myModal"> <?php echo ($value[1]) ?></p>
-                       </td>
-                   </tr>
-                   <tr>
-                       <td >
-                         <label>objetivo</label>
-                        <p id="ob" data-toggle="modal" data-target="#myModal"> <?php echo ($value[2]) ?></p>
-                       </td>
-                       <td >
-                        <label>sumilla</label>
-                        <p id="su" data-toggle="modal" data-target="#myModal"> <?php echo ($value[3]) ?></p>
-                       </td>
-                   </tr>
-                </tbody>
-            </table>
+<div class="tab-content tb">
+    <div class="tab-pane active" id="sumilla" align="justify">
+      <h3 align="center">SUMILLA</h3>
+      <p id="su" data-toggle="modal" data-target="#myModal"> <?php echo ($value[3]) ?></p>
+    </div>
 
-            
-</div>
+    <div class="tab-pane" id="competencia" align="justify">
+      <h3 align="center">COMPETENCIA</h3>
+      <p id="comp" data-toggle="modal" data-target="#myModal" class="compet"><?php echo ($value[0]) ?></p> 
+    </div> 
+
+    <div class="tab-pane" id="metodologia" align="justify">
+      <h3 align="center">METODOLOGÍA</h3>
+      <p id="met" data-toggle="modal" data-target="#myModal"> <?php echo ($value[1]) ?></p>
+    </div>
+
+    <div class="tab-pane" id="objetivo" align="justify">
+      <h3 align="center">OBJETIVO</h3>
+      <p id="ob" data-toggle="modal" data-target="#myModal"> <?php echo ($value[2]) ?></p>
+    </div>    
 
         <input type="hidden" id="semestre" value="<?php echo $value[4] ?>"/>
         <input type="hidden" id="curso" value="<?php echo $value[5]; $cursok= $value[5];  ?>"/>
         <input type="hidden" id="silabo" value="<?php echo $value[6]; $idsilak=$value[6]; ?>"/>
 <!--        unidad inicio-->
-        <div class="tab-pane"  id="unidad" align="justify">
+        <div class="tab-pane unidad"  id="unidad" align="justify">
+            <h3 align="center">UNIDADES</h3>
             <div id="unidades"></div>
         </div>
 <!--        unidad fin-->
@@ -72,16 +68,18 @@
         <div class="tab-pane" id="bibliografia" >
           <input  type="hidden" id="curs" value="<?php echo $value[5] ;?>"/>
           <input type="hidden" id="semes" value="<?php echo $value[4] ; ?>">
-          <br>
+          <h3 align="center">BIBLIOGRAFÍA</h3>
           <div id="bibliografias"></div>
         </div>
         <div class="tab-pane" id="generarsilabo">
-          <br>
+          <h3 align="center">GENERAR SÍLABO</h3>
           <a class="btn btn-default gensil" title="descargar" target="_blank"
   href='index.php?controller=cursosemestre&action=generarsilabo&CodSemestre=<?php echo $sem ;?>&CodCurso=<?php echo $cursok;?>&CodSilabo=<?php echo $idsilak ;?>'></a>
         </div>
         </div>
 <!--        edit fin-->
+
+
 
 
         <?php }
@@ -96,46 +94,28 @@
     <input type="hidden" name="codemestre" value="<?php echo $_POST["codemestre"]; ?>" >
     <input type="hidden" name="codcurso" value="<?php echo $_POST["Codigo"]; ?>" >
     <input type="hidden" name="coddocente" value="<?php echo $_SESSION['idusuario']; ?>" >
-<div class="tab-content col-md-11">
-        <div class="tab-pane active" id="obGen" align="justify">
-            <br>
-            <script src="../web/js/jquery.min.js"></script>
-            <script src="../web/js/jquery.autosize.js"></script>
-            <script>
-               $(function(){
-                 $('textarea').autosize();    
-               });         
-            </script>
-            <table class="table">
-                <tbody>
-                   <tr>
-                       <td><label>competencia</label>
-                       <textarea id="competencia_1" class="form-control validar" name="competenciaS" required rows="3"> </textarea>
-                       </td>
-                       <td>
-                         <label>metodologia</label>
-                         <textarea id="metodologia_1" class="form-control validar" name="metodologia" rows="3"> </textarea>
-                       </td>
-                   </tr>
-                   <tr>
-                       <td>
-                         <label>objetivo</label>
-                         <textarea id="objetivo_1" class="form-control validar" name="objetivo" rows="3"></textarea>
-                       </td>
-                       <td>
-                        <label>sumilla</label>
-                        <textarea id="sumilla_1" class="form-control validar" name="sumilla" rows="3"></textarea>
-                       </td>
-                   </tr>
-                </tbody>
-            </table>
+<div class="tab-content tb">
+        <div class="tab-pane active" id="sumilla" align="justify">
+          <h3 align="center">SUMILLA</h3>
+          <textarea id="sumilla_1" placeholder="llenar sumilla"  class="form-control validar" name="sumilla" rows="3"></textarea>
+        </div>  
+        <div class="tab-pane"  id="competencia" align="justify">
+          <h3 align="center">COMPETENCIA</h3>
+          <textarea id="competencia_1" placeholder="llenar competencia" class="form-control validar" name="competenciaS" rows="3"> </textarea>
+        </div> 
+        <div class="tab-pane"  id="metodologia" align="justify">
+          <h3 align="center">METODOLOGÍA</h3>
+          <textarea id="metodologia_1" placeholder="llenar metodologia"  class="form-control validar" name="metodologia" rows="3"> </textarea>
+        </div>   
+        <div class="tab-pane"  id="objetivo" align="justify">
+          <h3 align="center">OBJETIVO</h3>
+          <textarea id="objetivo_1" placeholder="llenar objetivo"  class="form-control validar" name="objetivo" rows="3"></textarea>
+        </div>                             
+                         
 
-
-    </div>  
-             
     <div class="tab-pane"  id="unidad" align="justify" >
             <br>
-            <button type="button" style="margin-left:40%;" onclick="agregarUni()" class="btn btn-default">
+            <button type="button"  onclick="agregarUni()" class="btn btn-default">
             Agregar</button>
              <button  type="button"class="btn btn-default eliminar">x</button>
             <br>
@@ -146,7 +126,7 @@
                 font-size: 8px;
                 resize: none;
                 width: 100%;
-                height: 15px;
+                height: 30px;
               }
               #tabla input[type='number']{
                 width: 60px;

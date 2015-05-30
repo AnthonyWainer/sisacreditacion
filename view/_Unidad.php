@@ -6,10 +6,10 @@
 <style>
     .codunidad:hover{
         background: #eaf8fc;
-        height: 32px;
+        height: 42px;
     }
     .codunidad{
-        height: 32px; 
+        height: 42px; 
     }
     .enUni{
         display: none;
@@ -64,11 +64,11 @@ function sem($sema,$s,$por){
 
 
         ?>  
-<br>
-
-<div class="panel panel-default col-md-12  "  >
-    <p class="col-md-3" style="width: 18%;">UNIDAD <?php echo $conta-10; ?> : </p>
-    <div class="panel-heading codunidad tamañodeuni col-md-8"   id="<?php echo $conta+20; ?>">
+<div class="panel panel-default col-md-12 "  >
+    <div class="col-md-3" >
+      <p >Unidad <?php echo $conta-10; ?> : </p>
+    </div>
+    <div class="panel-heading codunidad tamañodeuni col-md-7"   id="<?php echo $conta+20; ?>">
     <input type="hidden" class="idunidad<?php echo $conta; ?>" value="<?php echo $value[1]; ?>">
                 <h4 class="panel-title" id="hola" style="text-align: center; " >
                     <a data-toggle="collapse"  data-parent="#accordion" style="text-decoration: none; font-size: 11px"
@@ -112,10 +112,13 @@ function sem($sema,$s,$por){
             </tbody>
         </table>
     </div>
-    <input type="hidden" id="CU" name="" value="<?php echo $value[1]?>">
-<p class="col-md-1 eli" onclick="eliUni(<?php echo $value[1]?>)" title="eliminar unidad"><i class="fa fa-trash-o"></i></p>
-</div>
 
+    <div class="col-md-2">
+      <input type="hidden" id="CU" name="" value="<?php echo $value[1]?>">
+      <p class="eli" onclick="eliUni(<?php echo $value[1]?>)" title="eliminar unidad"><i class="fa fa-trash-o"></i></p>
+
+    </div>
+</div>
 <?php $conta = $conta + 1;}?>
 
 <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

@@ -19,3 +19,17 @@
     .eli:hover{
        color: blue;
     }
+
+.naa{
+  border: 5px dashed #ddd;
+  margin-right: 20px;
+  padding-right: 0px;
+}
+
+.tb{
+    border: 5px dashed #ddd;
+  margin-left: 150px;
+
+  padding-left: 20px;
+  padding-right: 20px;
+}

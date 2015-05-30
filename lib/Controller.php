@@ -3,6 +3,7 @@
 require_once '../model/Main.php';
 require_once '../model/semestre.php';
 require_once '../model/evaluacion.php';
+require_once '../model/bibliografia.php';
 
 
 class ControllerException extends Exception {
@@ -744,6 +745,7 @@ public function ListaPdf_ps($idevento) {
     public function detalle_silabus($p) {
 
         $obj = new Main();
+        $bib = new bibliografia();
         
 //        $obj->table = $p['table'];
         $obj->filtro = $p['filtro'];
@@ -756,7 +758,7 @@ public function ListaPdf_ps($idevento) {
         $data['rows'] = $obj->getdatos_Silabu();
         $data['rows3'] = $obj->getEvaluacion();
         $data['rows4'] = $obj->getTipEva();
-
+        $data['rows5'] = $bib->getTipoBibliografia();
         $data['disabled'] = $p['disabled'];
         $view = new View();
         $view->setData($data);
@@ -767,6 +769,7 @@ public function ListaPdf_ps($idevento) {
     public function bibliografia_silabus($p) {
 
         $obj = new Main();
+
         $datab = array();
         $datab['rows22'] = $obj->getBibliografia();
         //print_r(($datab['rows22']));

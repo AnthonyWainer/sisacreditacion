@@ -10,7 +10,8 @@
     }
 ?>
 
-
+<div class="table-responsive">
+    
 <table class="table eva" id="eval">
 	<thead>
 		<tr>
@@ -22,7 +23,7 @@
 		</tr>
 	</thead>
 	<tbody>
-<?php foreach ($rows as $key => $value) { ?>
+<?php foreach ($rows as $key => $value) {  ?>
 			<tr class="dtp1">
 				<td >
 					<input type="hidden" id="ideva" value="<?php echo $value[4]?>" />
@@ -55,6 +56,7 @@
 	</tbody>
 </table>
 
+</div>
 <script type="text/javascript">
     $(document).ready(function(){
         $('.eva select').change(function(){

@@ -26,6 +26,7 @@
       <li><a href="#metodologia" data-toggle="tab" >Metodologia</a></li>
       <li ><a href="#objetivo" data-toggle="tab" >Objetivo</a></li>
       <li><a href="#unidad" data-toggle="tab" class="unidad">Unidad</a></li>
+      <li><a href="#evaluacion" data-toggle="tab" class="eva111">EVALUACIÓN</a></li>
       <li><a href="#bibliografia" onclick="bi(<?php echo $value[6]; ?>)" data-toggle="tab">Bibliografia</a></li>
       <li><a href="#generarsilabo" data-toggle="tab">Generar Sílabo</a></li>
     </ul> 
@@ -58,12 +59,19 @@
         <input type="hidden" id="semestre" value="<?php echo $value[4] ?>"/>
         <input type="hidden" id="curso" value="<?php echo $value[5]; $cursok= $value[5];  ?>"/>
         <input type="hidden" id="silabo" value="<?php echo $value[6]; $idsilak=$value[6]; ?>"/>
-<!--        unidad inicio-->
-        <div class="tab-pane unidad"  id="unidad" align="justify">
-            <h3 align="center">UNIDADES</h3>
-            <div id="unidades"></div>
+<!-- unidad inicio-->
+    <div class="tab-pane unidad"  id="unidad" align="justify">
+        <h3 align="center">UNIDADES</h3>
+        <div id="unidades"></div>
+    </div>
+<!-- unidad fin-->
+
+<!-- evaluacion inicio-->
+        <div class="tab-pane unidad"  id="evaluacion" align="justify">
+            <h3 align="center">EVALUACIÓN</h3>
+            <div id="evalua"></div>
         </div>
-<!--        unidad fin-->
+<!-- evaluacion fin-->
 
         <div class="tab-pane" id="bibliografia" >
           <input  type="hidden" id="curs" value="<?php echo $value[5] ;?>"/>
@@ -84,9 +92,6 @@
 
         <?php }
         }else{
-
-            
-
          ?>
 <form id="frm1" action="index.php?controller=cursosemestre" method="POST">
 <input type="hidden" name="controller" value="cursosemestre" />

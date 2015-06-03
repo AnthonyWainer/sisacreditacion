@@ -1,5 +1,3 @@
-
-
 //editar silabo
   //competencia
    $( "#comp" ).click(function() {
@@ -185,6 +183,7 @@ function agregarEva(p){
   //alert(idsilabo+""+campo);
   //alert("asdfas");
 //});
+
 function guardarre(){
   var idsilabo=$("#silabo").val();
   var campo=$(".modal-body #edits").val();

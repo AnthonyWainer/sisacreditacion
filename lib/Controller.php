@@ -1,5 +1,4 @@
 <?php
-
 require_once '../model/Main.php';
 require_once '../model/semestre.php';
 require_once '../model/evaluacion.php';
@@ -810,6 +809,28 @@ public function ListaPdf_ps($idevento) {
 
             $view->setTemplate('../view/_Unidad.php');
         }
+        return $view->renderPartial();
+    }
+    public function unidad_recibirU($p) {
+        $obj = new Main();
+        $uni = new semestre();
+//        $obj->table = $p['table'];
+        $obj->filtro = $p['filtro'];
+        $obj->criterio = $p['criterio'];
+        $obj->filtro1 = $p['filtro1'];
+        $obj->criterio1 = $p['criterio1'];
+        $uni->codSemestre = $p['criterio1'];
+        $obj->opt = $p['option'];
+
+        $data = array();
+        $data['rows'] = $obj->getUnidad();
+        $data['uni'] = $uni->ver();
+
+        $data['disabled'] = $p['disabled'];
+        $view = new View();
+        $view->setData($data);
+        $view->setTemplate('../view/unidad/_Unidad.php');
+
         return $view->renderPartial();
     }
 

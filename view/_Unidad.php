@@ -10,6 +10,10 @@
     }
     .codunidad{
         height: 42px; 
+        color: black;
+        padding-top: 10px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 5px 0px rgb(20, 122, 126);
     }
     .enUni{
         display: none;
@@ -64,20 +68,22 @@ function sem($sema,$s,$por){
 
 
         ?>  
-<div class="panel panel-default col-md-12 "  >
-    <div class="col-md-3" >
-      <p >Unidad <?php echo $conta-10; ?> : </p>
-    </div>
-    <div class="panel-heading codunidad tamañodeuni col-md-7"   id="<?php echo $conta+20; ?>">
+   
+    <input type="hidden" id="CU" name="" value="<?php echo $value[1]?>">
     <input type="hidden" class="idunidad<?php echo $conta; ?>" value="<?php echo $value[1]; ?>">
-                <h4 class="panel-title" id="hola" style="text-align: center; " >
-                    <a data-toggle="collapse"  data-parent="#accordion" style="text-decoration: none; font-size: 11px"
-                     href="#<?php echo $conta; ?>" >
-                        <p class="col-md-12" title="abrir unidad" data-toggle="modal" data-target="#myModal2"><?php echo utf8_encode($value[0]); ?></p>
-                    </a>
-                    
-                </h4>
-        <table class="table enUni" id="en<?php echo $conta; ?>">
+
+      <div class="codunidad tamañodeuni rows"   id="<?php echo $conta+20; ?>">
+        <p class="col-md-3">Unidad <?php echo $conta-10; ?> : </p>
+        <h4 id="hola" class="col-md-7" style="text-align: center; margin-top: -0px;">
+            <a style="text-decoration: none; color:black" href="#<?php echo $conta; ?>" >
+                <p title="abrir unidad" data-toggle="modal" data-target="#myModal2"><?php echo utf8_encode($value[0]); ?></p>
+            </a>
+        </h4>
+      <p class="eli col-md-2" onclick="eliUni(<?php echo $value[1]?>)" title="eliminar unidad"><i class="fa fa-trash-o"></i></p>
+      </div>
+<br>
+
+    <table class="table enUni" id="en<?php echo $conta; ?>">
             <input type="hidden" id="idunik" value="<?php echo $value[1]?>" />            
             <thead>
               <tr>
@@ -111,14 +117,7 @@ function sem($sema,$s,$por){
               </tr>
             </tbody>
         </table>
-    </div>
 
-    <div class="col-md-2">
-      <input type="hidden" id="CU" name="" value="<?php echo $value[1]?>">
-      <p class="eli" onclick="eliUni(<?php echo $value[1]?>)" title="eliminar unidad"><i class="fa fa-trash-o"></i></p>
-
-    </div>
-</div>
 <?php $conta = $conta + 1;}?>
 
 <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -134,11 +133,10 @@ function sem($sema,$s,$por){
 
         </div>
          <div class="modal-body2">
-            <div class="panel-body temas"></div>
+            <div class="panel-body temas"  style="overflow: scroll; height: 300px;"></div>
          </div>
         <div class="kmodal-footer" style="text-align: left;">
             <h4>EVALUACIÓN</h4> 
-            
             <div class="evaluacion"></div>
          </div>
       </div>

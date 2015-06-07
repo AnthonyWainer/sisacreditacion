@@ -814,6 +814,8 @@ public function ListaPdf_ps($idevento) {
     public function unidad_recibirU($p) {
         $obj = new Main();
         $uni = new semestre();
+        $eva = new evaluacion();
+
 //        $obj->table = $p['table'];
         $obj->filtro = $p['filtro'];
         $obj->criterio = $p['criterio'];
@@ -824,6 +826,9 @@ public function ListaPdf_ps($idevento) {
 
         $data = array();
         $data['rows'] = $obj->getUnidad();
+        $data['rows1'] = $obj->getEvaluacion0();
+        $data['eva']  = $eva->getTipoEva();
+
         $data['uni'] = $uni->ver();
 
         $data['disabled'] = $p['disabled'];
@@ -935,7 +940,7 @@ public function ListaPdf_ps($idevento) {
 
     public function evaluacion_recibir($p) {
         $obj = new Main();
-        $eva = new evaluacion();
+        $eva = new evaluacion();        
         $obj->criterio = $p['criterio'];
         $data = array();
         $data['rows'] = $obj->getEvaluacion();

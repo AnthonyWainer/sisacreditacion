@@ -26,7 +26,7 @@
       <li><a href="#metodologia" data-toggle="tab" >Metodologia</a></li>
       <li ><a href="#objetivo" data-toggle="tab" >Objetivo</a></li>
       <li><a href="#unidad" data-toggle="tab" class="unidad">Unidad</a></li>
-      <li><a href="#evaluacion" data-toggle="tab" class="eva111">EVALUACIÓN</a></li>
+      <li><a href="#evaluacion" data-toggle="tab" class="eva111">Evaluación</a></li>
       <li><a href="#bibliografia" onclick="bi(<?php echo $value[6]; ?>)" data-toggle="tab">Bibliografia</a></li>
       <li><a href="#generarsilabo" data-toggle="tab">Generar Sílabo</a></li>
     </ul> 
@@ -62,7 +62,8 @@
 <!-- unidad inicio-->
     <div class="tab-pane unidad"  id="unidad" align="justify">
         <h3 align="center">UNIDADES</h3>
-        <div id="unidades"></div>
+        <br>
+        <div id="un11"></div>
     </div>
 <!-- unidad fin-->
 

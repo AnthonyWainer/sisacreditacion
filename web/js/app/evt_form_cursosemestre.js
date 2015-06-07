@@ -285,18 +285,13 @@ function unidad(){
     var curso = $("#curso").attr("value");
     var opt="asd";
 
-    $("#boton").css("display", "none");
-                
     $.post('index.php', 'controller=cursosemestre&action=getUnidad&CodigoCurso=' + curso + '&idSemestre=' + semestre+'&sin='+opt, function(data) {
       if(data=="")
       {
         alert("estoi vacio");
       }else{
-        $("#boton").css("display", "none");
-        $("#unidades").empty().append(data);
+        $("#un11").html(data);
       }
-
-        
     });
 }
 function temasdUnidad(id){

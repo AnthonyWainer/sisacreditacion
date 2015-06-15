@@ -1,3 +1,4 @@
+
 <?php $p=0; foreach ($rows as $key => $value) { 
         $p += $value[3];
     }
@@ -58,27 +59,25 @@
 
 </div>
 <script type="text/javascript">
-    $(document).ready(function(){
-        $('.eva select').change(function(){
-	        edit= $(this).val();
-	        campo= $(this).attr('id');
-	        ide=$('#ideva').val();
-	        //alert(edit + " "+campo + " " + ide);
-	        $.post('index.php', 'controller=cursosemestre&action=editarEva_tipo&Campo=' +campo+
-	                                                '&Evaluacion='+ide+'&Editar='+edit, function(data) {
-	                          });
+        $('.dtp1 .k2').change(function(){
+            edit= $(this).val();
+            campo= $(this).attr('id');
+            ide=$('#ideva').val();
+            //alert(edit + " "+campo + " " + ide);
+            $.post('index.php', 'controller=cursosemestre&action=editarEva_tipo&Campo=' +campo+
+                                                    '&Evaluacion='+ide+'&Editar='+edit, function(data) {
+                              });
         });
 
-        $('.eva .k2').blur(function(){
-	        edit= $(this).val();
-	        campo= $(this).attr('id');
-	        ide=$('#ideva').val();
-	        //alert(edit + " "+campo + " " + ide);
-	        $.post('index.php', 'controller=cursosemestre&action=editarEva_tipo&Campo=' +campo+
-	                                                '&Evaluacion='+ide+'&Editar='+edit, function(data) {
-	                          });
+        $('.dtp1 .k2').blur(function(){
+            edit= $(this).val();
+            campo= $(this).attr('id');
+            ide=$('#ideva').val();
+            //alert(edit + " "+campo + " " + ide);
+            $.post('index.php', 'controller=cursosemestre&action=editarEva_tipo&Campo=' +campo+
+                                                    '&Evaluacion='+ide+'&Editar='+edit, function(data) {
+                              });
         });
-    });
 function eliEva(id,uni){
     //alert("huanaco"+id);
     alertify.confirm("¿ESTÁS SEGURO DE ELIMINAR LA EVALUACIÓN?", function (e) {

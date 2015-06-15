@@ -272,6 +272,9 @@ $(".unidad").live("click", function() {
     unidad();
 });
 $(".eva111").live("click", function() {
+  eva111();
+});
+function eva111(){
    var semestre = $("#semestre").attr("value");
     var curso = $("#curso").attr("value");
     var opt="asd";
@@ -279,7 +282,7 @@ $(".eva111").live("click", function() {
     $.post('index.php', 'controller=cursosemestre&action=getUni&CodigoCurso=' + curso + '&idSemestre=' + semestre+'&sin='+opt, function(data) {
         $("#evalua").html(data);
     });
-});
+}
 function unidad(){
     var semestre = $("#semestre").attr("value");
     var curso = $("#curso").attr("value");

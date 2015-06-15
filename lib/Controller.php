@@ -793,6 +793,7 @@ public function ListaPdf_ps($idevento) {
         $data = array();
         $data['rows'] = $obj->getUnidad();
         $data['uni'] = $uni->ver();
+
         if ($obj->opt == 'dsa') {
             $data['rows2'] = "boton";
         } else {

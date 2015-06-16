@@ -56,13 +56,14 @@
                ?>    
               </td>
               <td>
-              <?php echo (utf8_encode($value[1]));?>
+              <textarea class="k2" style="border: none; resize: none; background-color: rgb(249, 249, 249);" id="descripcionevaluacion"><?php echo (utf8_encode($value[1]));?></textarea>
+              
               </td>
               <td>
-                      <?php echo (utf8_encode($value[2]));?>
+              <input type="date" name=""class='form-control k2'  id="fecha" style="border: none; background-color: rgb(249, 249, 249);" value="<?php echo (utf8_encode($value[2]));?>" placeholder=""> 
               </td>
               <td>
-              <?php echo (utf8_encode($value[3]));?>
+              <input type="text" name=""class='form-control k2'  id="ponderado" style="border: none; background-color: rgb(249, 249, 249);" value="<?php echo (utf8_encode($value[3]));?>" placeholder=""> 
               </td>
             </tr>
       <?php } } ?>
@@ -77,7 +78,7 @@
 $(".ag").click(function(){
   idsi = $(this).attr('id');
   porc = $("#Poreva").val();
-    $.post('index.php', 'controller=unidad&action=create&idsilabo=' +idsi+'&nombreunidad='+'unidad 0'+'&duracion='+0+'&porcentaje='+porc, function(data) {
+    $.post('index.php', 'controller=unidad&action=create2&idsilabo=' +idsi+'&nombreunidad='+'unidad 0'+'&duracion='+0+'&porcentaje='+porc, function(data) {
         alertify.success("SE INSERTO UNIDAD 0");  
         eva111();
   });
@@ -90,7 +91,15 @@ $(".agE").click(function(){
       eva111();
   });    
 });
-
+$('.k2').blur(function(){
+            edit= $(this).val();
+            campo= $(this).attr('id');
+            ide=$('#ideva').val();
+            //alert(edit + " "+campo + " " + ide);
+            $.post('index.php', 'controller=cursosemestre&action=editarEva_tipo&Campo=' +campo+
+                                                    '&Evaluacion='+ide+'&Editar='+edit, function(data) {
+                              });
+        });
 </script>
 
 

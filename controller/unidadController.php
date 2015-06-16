@@ -4,6 +4,7 @@ require_once '../lib/Controller.php';
 require_once '../lib/View.php';
 require_once '../model/unidad.php';
 require_once '../model/tema.php';
+require_once '../model/evaluacion.php';
 
 class unidadController extends Controller {
 
@@ -123,7 +124,10 @@ class unidadController extends Controller {
         $obj->insert($_POST);
         $tem-> insert($_POST);
     }
-
+    public function create2() {
+        $obj = new unidad();
+        $obj->insert2($_POST);
+    }
     public function getUnidad() {
         $ofic = $this->Select_ajax(array('id' => 'idcriterio', 'name' => 'idcriterio', 'table' => 'vista_unidad', 'filtro' => 'idsilabus', 'criterio' => $_POST['idsilabus']));
         echo $ofic;

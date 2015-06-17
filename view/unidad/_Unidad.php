@@ -56,14 +56,14 @@
                ?>    
               </td>
               <td>
-              <textarea class="k2" style="border: none; resize: none; background-color: rgb(249, 249, 249);" id="descripcionevaluacion"><?php echo (utf8_encode($value[1]));?></textarea>
+              <textarea class="k2" name="<?php echo $value[4]?>" style="border: none; resize: none; background-color: rgb(249, 249, 249);" id="descripcionevaluacion"><?php echo (utf8_encode($value[1]));?></textarea>
               
               </td>
               <td>
-              <input type="date" name=""class='form-control k2'  id="fecha" style="border: none; background-color: rgb(249, 249, 249);" value="<?php echo (utf8_encode($value[2]));?>" placeholder=""> 
+              <input type="date" name="<?php echo $value[4]?>"class='form-control k2'  id="fecha" style="border: none; background-color: rgb(249, 249, 249);" value="<?php echo (utf8_encode($value[2]));?>" placeholder=""> 
               </td>
               <td>
-              <input type="text" name=""class='form-control k2'  id="ponderado" style="border: none; background-color: rgb(249, 249, 249);" value="<?php echo (utf8_encode($value[3]));?>" placeholder=""> 
+              <input type="text" name="<?php echo $value[4]?>"class='form-control k2'  id="ponderado" style="border: none; background-color: rgb(249, 249, 249);" value="<?php echo (utf8_encode($value[3]));?>" placeholder=""> 
               </td>
             </tr>
       <?php } } ?>
@@ -94,7 +94,7 @@ $(".agE").click(function(){
 $('.k2').blur(function(){
             edit= $(this).val();
             campo= $(this).attr('id');
-            ide=$('#ideva').val();
+            ide=$(this).attr('name');
             //alert(edit + " "+campo + " " + ide);
             $.post('index.php', 'controller=cursosemestre&action=editarEva_tipo&Campo=' +campo+
                                                     '&Evaluacion='+ide+'&Editar='+edit, function(data) {

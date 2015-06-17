@@ -64,6 +64,7 @@ function sem($sema,$s,$por){
 
 
             foreach ($rows as $key => $value) {
+              if ($value[0] != "unidad 0") {
 
 
 
@@ -118,7 +119,7 @@ function sem($sema,$s,$por){
             </tbody>
         </table>
 
-<?php $conta = $conta + 1;}?>
+<?php $conta = $conta + 1;} }?>
 
 <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
    <div class="modal-dialog" style=" width: 90%;">

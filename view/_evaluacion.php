@@ -51,7 +51,9 @@
 				<td>
 				<?php echo (utf8_encode($value[3]));?>
 				</td>
-                <td><p class="col-md-1 eli" onclick="eliEva(<?php echo $value[4]?>,<?php echo $value[5]?>)" title="eliminar unidad"><i class="fa fa-trash-o"></i></p></td>
+         <td>
+         <p class="col-md-1 eli" onclick="eliEva(<?php echo $value[4]?>,<?php echo $value[5]?>)" title="eliminar unidad"><i class="fa fa-trash-o"></i></p>
+         </td>
 			</tr>
 <?php } ?>
 	</tbody>

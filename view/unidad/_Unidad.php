@@ -16,8 +16,9 @@
 <br><br>
 
    <?php  $conta = 11;
-   foreach ($rows as $key => $value) {
+   foreach ($rows as $key => $value) { $nu = $value[0];
         ?>  
+
       Unidad <?php echo $conta-10; ?>: <?php echo $value[0]; $cu =$value[1] ?>
 
       <div class="table-responsive">
@@ -56,15 +57,30 @@
                ?>    
               </td>
               <td>
+              <?php if ($nu == "unidad 0") { ?>
               <textarea class="k2" name="<?php echo $value[4]?>" style="border: none; resize: none; background-color: rgb(249, 249, 249);" id="descripcionevaluacion"><?php echo (utf8_encode($value[1]));?></textarea>
-              
+              <?php }else{ ?>
+                  <?php echo $value[1]?>
+              <?php } ?>
               </td>
               <td>
-              <input type="date" name="<?php echo $value[4]?>"class='form-control k2'  id="fecha" style="border: none; background-color: rgb(249, 249, 249);" value="<?php echo (utf8_encode($value[2]));?>" placeholder=""> 
+              <?php if ($nu == "unidad 0") { ?>
+                  <input type="date" name="<?php echo $value[4]?>"class='form-control k2'  id="fecha" style="border: none; background-color: rgb(249, 249, 249);" value="<?php echo (utf8_encode($value[2]));?>" placeholder=""> 
+              <?php }else{ ?>
+                <?php echo $value[2]?>
+              <?php } ?>                  
               </td>
               <td>
+              <?php if ($nu == "unidad 0") { ?>
               <input type="text" name="<?php echo $value[4]?>"class='form-control k2'  id="ponderado" style="border: none; background-color: rgb(249, 249, 249);" value="<?php echo (utf8_encode($value[3]));?>" placeholder=""> 
+              <?php }else{ ?>
+                  <?php echo $value[3]?>
+              <?php } ?>              
               </td>
+              <?php if ($nu == "unidad 0") { ?>
+              <td><p class="col-md-1 eli" onclick="eliEva(<?php echo $value[4]?>,<?php echo $value[5]?>)" title="eliminar unidad"><i class="fa fa-trash-o"></i></p></td>
+              <?php }?>
+
             </tr>
       <?php } } ?>
         </tbody>
@@ -100,6 +116,19 @@ $('.k2').blur(function(){
                                                     '&Evaluacion='+ide+'&Editar='+edit, function(data) {
                               });
         });
+function eliEva(id,uni){
+    //alert("huanaco"+id);
+    alertify.confirm("¿ESTÁS SEGURO DE ELIMINAR LA EVALUACIÓN?", function (e) {
+    if (e) {
+        $.post('index.php', 'controller=evaluacion&action=delete&id=' +id, function(data) {
+            eva(uni);
+            alertify.success("EVALUACIÓN ELIMINADA");  
+        });
+    } else {
+        alertify.success("EVALUACIÓN NO ELIMINADA");  
+    }
+    });
+}
 </script>
 
 

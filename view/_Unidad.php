@@ -1,14 +1,14 @@
 <script type="text/javascript" src="lib/alertify.js"></script>
 <link rel="stylesheet" href="themes/alertify.core.css"  type="text/css"/>
 <link rel="stylesheet" href= "themes/alertify.default.css"  type="text/css"/>
-<link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
+<link rel="stylesheet" href="font-awesome-4.3.0/css/font-awesome.css">
 
 <style>
-    .codunidad:hover{
+    .codunidad01:hover{
         background: #eaf8fc;
         height: 42px;
     }
-    .codunidad{
+    .codunidad01{
         height: 42px; 
         color: black;
         padding-top: 10px;
@@ -73,7 +73,7 @@ function sem($sema,$s,$por){
     <input type="hidden" id="CU" name="" value="<?php echo $value[1]?>">
     <input type="hidden" class="idunidad<?php echo $conta; ?>" value="<?php echo $value[1]; ?>">
 
-      <div class="codunidad tamañodeuni rows"   id="<?php echo $conta+20; ?>">
+      <div class="codunidad01 tamañodeuni01 rows"   id="<?php echo $conta+20; ?>">
         <p class="col-md-3">Unidad <?php echo $conta-10; ?> : </p>
         <h4 id="hola" class="col-md-7" style="text-align: center; margin-top: -0px;">
             <a style="text-decoration: none; color:black" href="#<?php echo $conta; ?>" >
@@ -187,8 +187,8 @@ function eliUni(id){
 $(document).ready(function(){
 
 
-var tamañodeuni= $(".tamañodeuni").length;
-$('.codunidad').live("click",function(){
+var tamañodeuni= $(".tamañodeuni01").length;
+$('.codunidad01').live("click",function(){
         tip= $(this).attr('id');
         for ( y = 11; y <= (parseInt(tamañodeuni)+10); y++) {
         if (y == (parseInt(tip)-20)) {

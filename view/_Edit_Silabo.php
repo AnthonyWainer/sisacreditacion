@@ -7,7 +7,8 @@
 <script type="text/javascript" src="lib/alertify.js"></script>
 <link rel="stylesheet" href="themes/alertify.core.css"  type="text/css"/>
 <link rel="stylesheet" href= "themes/alertify.default.css"  type="text/css"/>
-<link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
+<!--<link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css"> -->
+<link rel="stylesheet" href="../web/font-awesome-4.3.0/css/font-awesome.css">
   <?php 
         foreach ($rows as $key => $value) {
         }?>
@@ -25,7 +26,7 @@
       <li><a href="#competencia" data-toggle="tab" >Competencia</a></li>
       <li><a href="#metodologia" data-toggle="tab" >Metodologia</a></li>
       <li ><a href="#objetivo" data-toggle="tab" >Objetivo</a></li>
-      <li><a href="#unidad" data-toggle="tab" class="unidad">Unidad</a></li>
+      <li><a href="#unidad" data-toggle="tab" class="unidad01">Unidad</a></li>
       <?php if($rows){ ?>
       <li><a href="#evaluacion" data-toggle="tab" class="eva111">Evaluación</a></li>
       <?php } ?>
@@ -80,7 +81,7 @@
           <input  type="hidden" id="curs" value="<?php echo $value[5] ;?>"/>
           <input type="hidden" id="semes" value="<?php echo $value[4] ; ?>">
           <h3 align="center">BIBLIOGRAFÍA</h3>
-          <div id="bibliografias"></div>
+          <div id="bibliografias001"></div>
         </div>
         <div class="tab-pane" id="generarsilabo">
           <h3 align="center">GENERAR SÍLABO</h3>

@@ -37,7 +37,6 @@
                       });
 
 </script>
-<div class="col-md-12">
 <button id="biblio" type="button" class="btn btn-default" onclick="bib(<?php echo $v[1]; ?>)">Agregar</button> 
 <table id="bibl" class='table table-hover table-bordered' style="">
   <thead>
@@ -78,5 +77,4 @@
     <?php }   ?>
   </tbody>
 </table>
-</div>
 

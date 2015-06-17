@@ -28,6 +28,10 @@ class evaluacionController extends Controller {
         $obj = new evaluacion();
         $obj->insert($_POST); 
     }
+    public function insertEvaluacion1(){
+        $obj = new evaluacion();
+        $obj->insert1($_POST); 
+    }    
     public function edit() {
         $obj = new evaluacion();
         $data = array();

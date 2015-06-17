@@ -27,8 +27,19 @@
 <?php } 
 } 
     $po = 100-$pp;
-    if ($po!=0) {  ?>
+    if (($po!=0 ) && ($nu == "unidad 0"))  {  ?>
     <button type="button" class="btn btn-default agE" id="<?php echo $value[5]; ?>">agregar</button>
+             <?php 
+                 
+               echo "<select style='width:300px;' class='form-control sE'";
+               foreach ($eva as $key => $ev) { 
+                   if ($value[0] != $ev[0] ) {
+                       echo "<option value='".$ev[0]."'>".$ev[1]."</option>";
+                   }
+                }
+                echo "</select>";   
+            
+         ?>  
     <input type="number" id="Poreva" value="<?php echo $po; ?>">
 
 <?php        
@@ -101,8 +112,9 @@ $(".ag").click(function(){
 });
 $(".agE").click(function(){
   idu = $(this).attr('id');
+  ide = $(".sE").val();
   porc = $("#Poreva").val();
-  $.post('index.php', 'controller=evaluacion&action=insertEvaluacion&idunidad=' +idu+'&ponderado='+porc, function(data) {
+  $.post('index.php', 'controller=evaluacion&action=insertEvaluacion1&idunidad=' +idu+'&ponderado='+porc+'&idevaluacion='+ide, function(data) {
   alertify.success("SE INSERTO evaluacion");
       eva111();
   });    
@@ -114,6 +126,7 @@ $('.k2').blur(function(){
             //alert(edit + " "+campo + " " + ide);
             $.post('index.php', 'controller=cursosemestre&action=editarEva_tipo&Campo=' +campo+
                                                     '&Evaluacion='+ide+'&Editar='+edit, function(data) {
+              alertify.success("SE INSERTO evaluacion");
                               });
         });
 function eliEva(id,uni){
@@ -121,7 +134,7 @@ function eliEva(id,uni){
     alertify.confirm("¿ESTÁS SEGURO DE ELIMINAR LA EVALUACIÓN?", function (e) {
     if (e) {
         $.post('index.php', 'controller=evaluacion&action=delete&id=' +id, function(data) {
-            eva(uni);
+            eva111();
             alertify.success("EVALUACIÓN ELIMINADA");  
         });
     } else {

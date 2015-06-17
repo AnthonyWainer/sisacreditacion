@@ -268,7 +268,7 @@ $.post('index.php', 'controller=cursosemestre&action=getEdiSillabus&Codigo=' + i
 
 }
 
-$(".unidad").live("click", function() {
+$(".unidad01").live("click", function() {
     unidad();
 });
 $(".eva111").live("click", function() {
@@ -293,7 +293,7 @@ function unidad(){
       {
         alert("estoi vacio");
       }else{
-        $("#un11").html(data);
+        $("#un11").empty().html(data);
       }
     });
 }

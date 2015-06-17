@@ -36,7 +36,7 @@ $( "#su" ).click(function() {
 
 function bi(id){
   $.post('index.php', 'controller=bibliografia&action=verBiblio&ids='+id, function(data) {
-         $("#bibliografias").html(data);
+         $("#bibliografias001").empty().html(data);
   }); 
 }
 //ingresar unidades

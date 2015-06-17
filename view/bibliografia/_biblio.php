@@ -1,4 +1,3 @@
-
 <?php foreach ($rows2 as $key => $v)  { } ?>
 <script>
   function bib(ids){
@@ -78,3 +77,4 @@
     <?php }   ?>
   </tbody>
 </table>
+

@@ -22,13 +22,13 @@
       Unidad <?php echo $conta-10; ?>: <?php echo $value[0]; $cu =$value[1] ?>
 
       <div class="table-responsive">
-<?php $pp=0; foreach ($rows1 as $key => $value) {  if ($value[5] == $cu){ $pp += $value[3]; ?>
+<?php $pp=0; foreach ($rows1 as $key => $value) {  if ($value[5] == $cu){ $pp += $value[3]; $iduu=$value[5]; ?>
 
 <?php } 
 } 
     $po = 100-$pp;
     if (($po!=0 ) && ($nu == "unidad 0"))  {  ?>
-    <button type="button" class="btn btn-default agE" id="<?php echo $value[5]; ?>">agregar</button>
+    <button type="button" class="btn btn-default agE" id="<?php echo $iduu; ?>">agregar</button>
              <?php 
                  
                echo "<select style='width:300px;' class='form-control sE'";

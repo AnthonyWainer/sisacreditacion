@@ -127,6 +127,7 @@ $('.k2').blur(function(){
             $.post('index.php', 'controller=cursosemestre&action=editarEva_tipo&Campo=' +campo+
                                                     '&Evaluacion='+ide+'&Editar='+edit, function(data) {
               alertify.success("SE INSERTO evaluacion");
+              eva111();
                               });
         });
 function eliEva(id,uni){

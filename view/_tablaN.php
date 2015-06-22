@@ -60,8 +60,6 @@
 							</th>
                                                       
 							<?php $cont=$cont+1;}?>
-                                                          <th>PI</th>
-                                                        <th width="20" >Tutoria</th>
 							<th padding="25px 20px" >Promedio</th>
 						</tr>
        
@@ -96,19 +94,30 @@
 										
 											<?php if (isset($rows4)){$ev=1;
 												foreach ($rows4 as $key => $value5) {
-                                                        $ie= $value5[3]; $ponderado= $value5[2]; 
+                                                        $ie= $value5[3]; $ponderado= $value5[2]; $noe =  $value5[7];
 													//echo $value5[9]; 
-													if ($idU== $value5[9]) { ?>
+													if ($idU== $value5[9]) {
+
+													 ?>
 													<td class="tnota U<?php echo $j;?>  U<?php echo $j.'-'.$i.'-'.$ev; $ev++;?>">
 													
-													<?php  #echo $ponderado;
+													<?php #echo $ponderado; 
 													$estadoBtn  = $value5[10];
 													$fechaE= date("d-m-Y",strtotime($value5[1]));  $diaE= (date("d",strtotime($value5[1]))+7);  $mesE=date("m",strtotime($value5[1])); $anioE=date("Y",strtotime($value5[1]));
 													 if (isset($rows3)){ 
 													 foreach ($rows3 as $key => $value) { 
 													 	 
 														 if (($value[0]==$alum) && ($value[2]==$ie)){
+															if ($noe == "Proyecto de Investigacion") { ?>
+
+																<input type="hidden" id="0"/>		
+																 	
+													 		<?php	}else{
+													 		if ($noe == "Eventos de Tutoria") {?>
+																<input type="hidden" id="0"/>
+													 		<?php }else{														 	
 															if (($fechaE == $fechaA) || (((int)$diaA <= (int)$diaE)&&((int)$mesA == (int)$mesE)&&((int)$anioA == (int)$anioE))){
+
 														 		?>
 
 																 <input type='text' maxlength='2'  pattern='{0-9}+'  class='form-control nota <?php if ((int)$value[1]<=10){echo "colorD";}else{echo "colorA";}?>' name="<?php echo $alum;?>,<?php echo $ie;?>" id = "<?php echo ($value[1]*$ponderado)/100;?>"value="<?php echo (int)$value[1];?>" onblur='hi(this)'/>	
@@ -116,7 +125,9 @@
 															  	<input type='text' disabled class='form-control nota <?php if ((int)$value[1]<=10){echo "colorD";}else{echo "colorA";}?>' name="<?php echo $alum;?>,<?php echo $ie;?>" id = "<?php echo ($value[1]*$ponderado)/100;?>"value="<?php echo (int)$value[1];?>" onblur='hi(this)'/>		
 															  	<?php
 														  	}
-														  }
+														   }
+														   }
+														   }
 														  ?>
 													<?php } ?>
 														<input type="hidden" id="0"/>
@@ -130,8 +141,8 @@
 											<input type="text" disabled name="<?php echo $por; ?>" class='form-control nota'maxlength='2' id="<?php echo $j.'-'.$i ?>">
 												
 										</td>
-                                                                                <td>
-                                                                                    <?php 
+                                        <!--                                        <td>
+                                                                                    <?php /*
                                                                                     $temp=0; 
                                                                                     $nota_i=0;
                                                                                     foreach ($notas_py as $kpy){ 
@@ -144,15 +155,14 @@
                                                                                     $nota_i = (int)($nota_i/$temp);
                                                                                     if($temp==0){
                                                                                      	$nota_i=0;
-                                                                                    } 
+                                                                                    } */
                                                                                     ?> 
-                                                                                    <input type='hidden' maxlength='2'  pattern='{0-9}+'  class='input-small form-control nota <?php if ((int)$nota_i<=10){echo "colorD";}else{echo "colorA";}?>' name="<?php echo $alum;?>,<?php echo $ie;?>" id = "<?php echo ($nota_i*$ponderado_i)/100;?>"value="<?php echo (int)$nota_i;?>" onblur='hi(this)'/>	
-                                                                                    <?php if( (int)$nota_i<10){ echo "<i style='color:red'>".(int)$nota_i."</i>";}else{echo "<i  style='color:blue'>".(int)$nota_i."</i>";}?>
-                                                                                </td>
+                                                                                    <input type='hidden' maxlength='2'  pattern='{0-9}+'  class='input-small form-control nota <?php //if ((int)$nota_i<=10){echo "colorD";}else{echo "colorA";}?>' name="<?php // echo $alum;?>,<?php // echo $ie;?>" id = "<?php // echo ($nota_i*$ponderado_i)/100;?>"value="<?php //echo (int)$nota_i;?>" onblur='hi(this)'/>	
+                                                                                    <?php //if( (int)$nota_i<10){ echo "<i style='color:red'>".(int)$nota_i."</i>";}else{echo "<i  style='color:blue'>".(int)$nota_i."</i>";}?>
+                                                                                </td> -->
 								<?php   $j++; } ?>
 
 							<?php }?>
-                                                                                 <td><?php $nota_tutoria=$rows_notas_tutoria[$alum]['nota_tutoria'];if(is_numeric($nota_tutoria)) {if($nota_tutoria<=10){echo"<span class='colorD'> ".$nota_tutoria."</span>";}else{echo"<span class='colorA'> ".$nota_tutoria."</span>";}}else{echo "<span class='colorD'>0</span>";} ?></td>
 							<td  class="tnota">
                                                            
 								<input class='form-control nota' id="<?php echo $i.'p'; ?>"disabled type="text" name="" value="" placeholder="">
@@ -178,19 +188,20 @@
 <script>
     nroFilas= $("#ola tbody tr:nth-child(1) td").length-3;
     nroColumnas= $("#ola tbody tr").length;
+    //nroColumnas = 1;
     nroUnidades= $("#ola tbody tr:nth-child(1) .Uni").length;
 	var n = [], b= [];
-
+//alert(nroUnidades);
 for (var u = 1; u <= nroUnidades; u++) {	
 	b[u]=[];
 	for (var c = 1; c <= nroColumnas; c++) {
 			
 		//for (var u = 1; u <= nroUnidades; u++) {
 			tam= $('#ola tbody tr:nth-child(1) .U'+u).length;
+
 			//alert(tam);
 			if(tam==1){
 				b[c]= $('.U'+u+'-'+c+'-'+tam+' input').attr('id');
-				
 				
 			}else{
 				//alert("yes");
@@ -200,16 +211,35 @@ for (var u = 1; u <= nroUnidades; u++) {
 				}
 			}
 	}
-	if (nroUnidades!=1){
+	if (nroUnidades==1){
 		for (var cc = 1; cc <= nroColumnas; cc++) {
 			if (parseInt(b[cc])<=10){
 				$('#'+u+'-'+cc).addClass('colorD');
 			}else{
 				$('#'+u+'-'+cc).addClass('colorA');
-			}			
+			}		
+
 			$('#'+u+'-'+cc).val(parseInt(b[cc]));
 		}
 		console.log(b);
+	}else{
+		tam= $('#ola tbody tr:nth-child(1) .U'+u).length;
+		
+		for (var cc = 1; cc <= nroColumnas; cc++) {
+			b= 0;
+			for (var t = 0; t < tam; t++) {
+				b+=parseFloat(n[cc][t]);
+			
+				if (parseInt(n[cc][t])<=10){
+					$('#'+u+'-'+cc).addClass('colorD');
+				}else{
+					$('#'+u+'-'+cc).addClass('colorA');
+				}
+				$('#'+u+'-'+cc).val(parseInt(b));
+			}
+			//alert(b);
+		}
+
 	}
 
 }	

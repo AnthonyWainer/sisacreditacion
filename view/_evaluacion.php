@@ -29,7 +29,7 @@
 				<td >
 				 <?php 
                  
-               echo "<select style='border:none; rgb(249, 249, 249); width:300px;' name='<?php echo $value[4]?>'  class='form-control k2' id='idtipo_evaluacion'>";
+               echo "<select style='border:none; rgb(249, 249, 249); width:300px;' name='".$value[4]."?>'  class='form-control k2' id='idtipo_evaluacion'>";
                foreach ($eva as $key => $ev) { 
                    if ($value[0] != $ev[0] ) {
                        echo "<option value='".$ev[0]."'>".$ev[1]."</option>";
@@ -67,6 +67,7 @@
             //alert(edit + " "+campo + " " + ide);
             $.post('index.php', 'controller=cursosemestre&action=editarEva_tipo&Campo=' +campo+
                                                     '&Evaluacion='+ide+'&Editar='+edit, function(data) {
+                    alertify.success("Cambio guardado");  
                               });
         });
 
@@ -77,6 +78,7 @@
             //alert(edit + " "+campo + " " + ide);
             $.post('index.php', 'controller=cursosemestre&action=editarEva_tipo&Campo=' +campo+
                                                     '&Evaluacion='+ide+'&Editar='+edit, function(data) {
+            alertify.success("Cambio guardado");                                                          
                               });
         });
 function eliEva(id,uni){

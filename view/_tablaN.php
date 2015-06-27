@@ -109,13 +109,22 @@
 													 	 
 														 if (($value[0]==$alum) && ($value[2]==$ie)){
 															if ($noe == "Proyecto de Investigacion") { ?>
-
+																	<!-- colocar nota de Proyecto de investigacion -->
 																<input type="hidden" id="0"/>		
 																 	
 													 		<?php	}else{
 													 		if ($noe == "Eventos de Tutoria") {?>
+													 				<!-- colocar nota de tutoria -->
 																<input type="hidden" id="0"/>
-													 		<?php }else{														 	
+													 		<?php }else{
+													 			if ($noe == "Identificacion Institucional") {?>
+													 				<!-- colocar nota de identificacion institucional -->
+													 				<input type="hidden" id="0"/>
+													 		<?php }else{
+													 				if ($noe == "Consejeria") {?>	
+													 				<!-- colocar nota de consejeria -->									 	
+													 				<input type="hidden" id="0"/>
+													 		<?php }else{
 															if (($fechaE == $fechaA) || (((int)$diaA <= (int)$diaE)&&((int)$mesA == (int)$mesE)&&((int)$anioA == (int)$anioE))){
 
 														 		?>
@@ -125,9 +134,11 @@
 															  	<input type='text' disabled class='form-control nota <?php if ((int)$value[1]<=10){echo "colorD";}else{echo "colorA";}?>' name="<?php echo $alum;?>,<?php echo $ie;?>" id = "<?php echo ($value[1]*$ponderado)/100;?>"value="<?php echo (int)$value[1];?>" onblur='hi(this)'/>		
 															  	<?php
 														  	}
+														  }
 														   }
 														   }
 														   }
+														}
 														  ?>
 													<?php } ?>
 														<input type="hidden" id="0"/>

@@ -32,7 +32,9 @@
                echo "<select style='border:none; rgb(249, 249, 249); width:300px;' name='".$value[4]."?>'  class='form-control k2' id='idtipo_evaluacion'>";
                foreach ($eva as $key => $ev) { 
                    if ($value[0] != $ev[0] ) {
-                       echo "<option value='".$ev[0]."'>".$ev[1]."</option>";
+                        if (($ev[0]== '0') ||   ($ev[0] == '1') ||   ($ev[0] == '2') || ($ev[0] == '5') || ($ev[0] == '9')) {
+                           echo "<option value='".$ev[0]."'>".$ev[1]."</option>";
+                       }
                    }else{
                    		echo "<option selected value='".$ev[0]."'>".$ev[1]."</option>";
                    }

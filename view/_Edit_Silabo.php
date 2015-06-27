@@ -21,24 +21,24 @@
     <!--INICIO foreach-->
     <div id="ampliar">
     <!-- <ul class="nav nav-tabs" id="myTab" > -->
-    <ul class="nav nav-tabs nav-pills nav-stacked col-md-2 naa">
-      <li class="active"><a href="#sumilla" data-toggle="tab" >Sumilla</a></li>
-      <li><a href="#competencia" data-toggle="tab" >Competencia</a></li>
-      <li><a href="#metodologia" data-toggle="tab" >Metodologia</a></li>
-      <li ><a href="#objetivo" data-toggle="tab" >Objetivo</a></li>
-      <li><a href="#unidad" data-toggle="tab" class="unidad01">Unidad</a></li>
+    <ul class="nav nav-tabs nav-pills nav-stacked col-md-2 naa" style="font-size: 12px">
+      <li class="active"><a href="#sumilla" data-toggle="tab" >SUMILLA</a></li>
+      <li><a href="#competencia" data-toggle="tab" >COMPETENCIA</a></li>
+      <li><a href="#metodologia" data-toggle="tab" >METODOLOGÍA</a></li>
+      <li ><a href="#objetivo" data-toggle="tab" >OBJETIVO</a></li>
+      <li><a href="#unidad" data-toggle="tab" class="unidad01">UNIDAD</a></li>
       <?php if($rows){ ?>
-      <li><a href="#evaluacion" data-toggle="tab" class="eva111">Evaluación</a></li>
+      <li><a href="#evaluacion" data-toggle="tab" class="eva111">EVALUACIÓN</a></li>
       <?php } ?>
-      <li><a href="#bibliografia" onclick="bi(<?php echo $value[6]; ?>)" data-toggle="tab">Bibliografia</a></li>
-      <li><a href="#generarsilabo" data-toggle="tab">Generar Sílabo</a></li>
+      <li><a href="#bibliografia" onclick="bi(<?php echo $value[6]; ?>)" data-toggle="tab">BIBLIOGRAFÍA</a></li>
+      <li><a href="#generarsilabo" data-toggle="tab">GUARDAR SÍLABO</a></li>
     </ul> 
     </div>
     <?php 
    if($rows){
     foreach ($rows as $key => $value) { $sem=$value[4]; ?>
 
-<div class="tab-content tb">
+<div class="tab-content tb" style="font-size: 12px">
     <div class="tab-pane active" id="sumilla" align="justify">
       <h3 align="center">SUMILLA</h3>
       <p id="su" data-toggle="modal" data-target="#myModal"> <?php echo ($value[3]) ?></p>

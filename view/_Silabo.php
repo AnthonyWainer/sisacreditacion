@@ -113,8 +113,11 @@
                   
               <?php                    
               //}else{
+              //echo $value2[4];
+              if ($value2[4] != 75 && $value2[4] != '76' && $value2[4] != '77' && $value2[4] != '81' ){
               if (($fechaE == $fechaA) || (((int)$diaA <= (int)$diaE)&&((int)$mesA == (int)$mesE)&&((int)$anioA == (int)$anioE))){
                 if ($estadoBtn == 1) {
+                  
                 ?>
                 <button class="btn btn-primary btn-xs" type="button"  value="Activo" style="background-color: orange;">Activo</button>
                 <?php } else{   ?>
@@ -122,10 +125,10 @@
                    <button class="btn btn-primary btn-xs" type="button" onclick="filtro('<?php echo $value2[4]?>',this)" value="Insertar">Insertar</button>
               <?php } } else {?>
                       <button class="btn btn-primary btn-xs inac" type="button"  value="Inactivo" style="background-color: red;">Inactivo</button>
-              <?php }    ?>
+              <?php } }   ?>
 
 
-
+ 
 
 
                   <input type="hidden" class="codcurso"  value="<?php echo $value[4]?>" />

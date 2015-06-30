@@ -1,20 +1,3 @@
-/*
-$('#generarsilabo .generarsilabos').live("click",function(){
-    cl2= $(this).attr('id');
-    myArray = cl2.split(',');
-    CodSemestre=myArray[0];
-    CodCurso=myArray[1];
-    CodSilabo=myArray[2];
-    $.post('index.php', 'controller=cursosemestre&action=generarsilabo&CodSemestre=' +CodSemestre+'&CodCurso='+CodCurso+'&CodSilabo='+CodSilabo, function(data) {
-      $(".gs").empty().append(data);
-        });
-
-});
-*/
-
-
-//cursos q enseña el docente
-
 $(window).bind("beforeunload",function(event){
    //return("hola"); 
    if (validaciones){
@@ -83,13 +66,8 @@ $('.nota').live('keyup' ,function(){
       //alert(idsa);  
     });
     carga($("#semestreacademico").val());
-    //alert("me recargue");
-// fin cursos q enseña el docente
+
 });
-/*
-  function cambiarfoto(){
-    $( "#dialog" ).dialog( "open" );
-  }*/
 
 function validarLetras(e)
 {
@@ -290,26 +268,33 @@ $.post('index.php', 'controller=cursosemestre&action=getEdiSillabus&Codigo=' + i
 
 }
 
-$(".unidad").live("click", function() {
+$(".unidad01").live("click", function() {
     unidad();
 });
+$(".eva111").live("click", function() {
+  eva111();
+});
+function eva111(){
+   var semestre = $("#semestre").attr("value");
+    var curso = $("#curso").attr("value");
+    var opt="asd";
+               
+    $.post('index.php', 'controller=cursosemestre&action=getUni&CodigoCurso=' + curso + '&idSemestre=' + semestre+'&sin='+opt, function(data) {
+        $("#evalua").html(data);
+    });
+}
 function unidad(){
     var semestre = $("#semestre").attr("value");
     var curso = $("#curso").attr("value");
     var opt="asd";
 
-    $("#boton").css("display", "none");
-                
     $.post('index.php', 'controller=cursosemestre&action=getUnidad&CodigoCurso=' + curso + '&idSemestre=' + semestre+'&sin='+opt, function(data) {
       if(data=="")
       {
         alert("estoi vacio");
       }else{
-        $("#boton").css("display", "none");
-        $("#unidades").empty().append(data);
+        $("#un11").empty().html(data);
       }
-
-        
     });
 }
 function temasdUnidad(id){

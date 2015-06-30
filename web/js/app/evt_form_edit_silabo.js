@@ -1,5 +1,3 @@
-
-
 //editar silabo
   //competencia
    $( "#comp" ).click(function() {
@@ -38,7 +36,7 @@ $( "#su" ).click(function() {
 
 function bi(id){
   $.post('index.php', 'controller=bibliografia&action=verBiblio&ids='+id, function(data) {
-         $("#bibliografias").html(data);
+         $("#bibliografias001").empty().html(data);
   }); 
 }
 //ingresar unidades
@@ -185,6 +183,7 @@ function agregarEva(p){
   //alert(idsilabo+""+campo);
   //alert("asdfas");
 //});
+
 function guardarre(){
   var idsilabo=$("#silabo").val();
   var campo=$(".modal-body #edits").val();

@@ -134,7 +134,17 @@ class cursosemestreController extends Controller {
         echo $envio;
         
        }
+        public function getUni ()
+       {
+        $codcurso=$_POST["CodigoCurso"];
+        $codsemestre= $_POST["idSemestre"];
+        $opt=$_POST['sin'];
+        
+        $envio=$this->unidad_recibirU(array('filtro' => 'CodigoCurso','filtro1' =>'CodigoSemestre','criterio' => $codcurso,'criterio1' => $codsemestre,'option' => $opt));      
        
+        echo $envio;
+        
+       }      
        
        
        public function getUnidadF ()

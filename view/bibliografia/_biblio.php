@@ -7,9 +7,16 @@
     });
   }
   function eliminarBiblio(idb,ids){
-    $.post('index.php', 'controller=bibliografia&action=delete&ids='+idb, function(data) {
-           bi(ids);
-           alertify.success("bibliografia eliminada");
+
+    alertify.confirm("¿ESTÁS SEGURO DE ELIMINAR LA BIBLIOGRAFÍA?", function (e) {
+    if (e) {
+        $.post('index.php', 'controller=bibliografia&action=delete&ids='+idb, function(data) {
+               bi(ids);
+               alertify.error("bibliografia eliminada");
+        });
+    } else {
+        alertify.log("bibliografia no eliminada");  
+    }
     });
   }
       $('.dtp input').blur(function(){
@@ -31,7 +38,7 @@
 
 </script>
 <button id="biblio" type="button" class="btn btn-default" onclick="bib(<?php echo $v[1]; ?>)">Agregar</button> 
-<table id="bibl" class='table table-hover table-bordered' style="width:800px; margin-left:-70px;">
+<table id="bibl" class='table table-hover table-bordered' style="">
   <thead>
     <tr style='background-color:#EAF8FC;font-size:12px;text-transform:uppercase;color:#000'>
         <th>#</th>

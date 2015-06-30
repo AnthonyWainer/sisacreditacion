@@ -1,8 +1,8 @@
 <?php
-
 require_once '../model/Main.php';
 require_once '../model/semestre.php';
 require_once '../model/evaluacion.php';
+require_once '../model/bibliografia.php';
 
 
 class ControllerException extends Exception {
@@ -744,6 +744,7 @@ public function ListaPdf_ps($idevento) {
     public function detalle_silabus($p) {
 
         $obj = new Main();
+        $bib = new bibliografia();
         
 //        $obj->table = $p['table'];
         $obj->filtro = $p['filtro'];
@@ -756,7 +757,7 @@ public function ListaPdf_ps($idevento) {
         $data['rows'] = $obj->getdatos_Silabu();
         $data['rows3'] = $obj->getEvaluacion();
         $data['rows4'] = $obj->getTipEva();
-
+        $data['rows5'] = $bib->getTipoBibliografia();
         $data['disabled'] = $p['disabled'];
         $view = new View();
         $view->setData($data);
@@ -767,6 +768,7 @@ public function ListaPdf_ps($idevento) {
     public function bibliografia_silabus($p) {
 
         $obj = new Main();
+
         $datab = array();
         $datab['rows22'] = $obj->getBibliografia();
         //print_r(($datab['rows22']));
@@ -791,6 +793,7 @@ public function ListaPdf_ps($idevento) {
         $data = array();
         $data['rows'] = $obj->getUnidad();
         $data['uni'] = $uni->ver();
+
         if ($obj->opt == 'dsa') {
             $data['rows2'] = "boton";
         } else {
@@ -807,6 +810,33 @@ public function ListaPdf_ps($idevento) {
 
             $view->setTemplate('../view/_Unidad.php');
         }
+        return $view->renderPartial();
+    }
+    public function unidad_recibirU($p) {
+        $obj = new Main();
+        $uni = new semestre();
+        $eva = new evaluacion();
+
+//        $obj->table = $p['table'];
+        $obj->filtro = $p['filtro'];
+        $obj->criterio = $p['criterio'];
+        $obj->filtro1 = $p['filtro1'];
+        $obj->criterio1 = $p['criterio1'];
+        $uni->codSemestre = $p['criterio1'];
+        $obj->opt = $p['option'];
+
+        $data = array();
+        $data['rows'] = $obj->getUnidad();
+        $data['rows1'] = $obj->getEvaluacion0();
+        $data['eva']  = $eva->getTipoEva();
+
+        $data['uni'] = $uni->ver();
+
+        $data['disabled'] = $p['disabled'];
+        $view = new View();
+        $view->setData($data);
+        $view->setTemplate('../view/unidad/_Unidad.php');
+
         return $view->renderPartial();
     }
 
@@ -911,7 +941,7 @@ public function ListaPdf_ps($idevento) {
 
     public function evaluacion_recibir($p) {
         $obj = new Main();
-        $eva = new evaluacion();
+        $eva = new evaluacion();        
         $obj->criterio = $p['criterio'];
         $data = array();
         $data['rows'] = $obj->getEvaluacion();

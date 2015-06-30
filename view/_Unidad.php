@@ -1,15 +1,19 @@
 <script type="text/javascript" src="lib/alertify.js"></script>
 <link rel="stylesheet" href="themes/alertify.core.css"  type="text/css"/>
 <link rel="stylesheet" href= "themes/alertify.default.css"  type="text/css"/>
-<link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
+<link rel="stylesheet" href="font-awesome-4.3.0/css/font-awesome.css">
 
 <style>
-    .codunidad:hover{
+    .codunidad01:hover{
         background: #eaf8fc;
-        height: 32px;
+        height: 42px;
     }
-    .codunidad{
-        height: 32px; 
+    .codunidad01{
+        height: 42px; 
+        color: black;
+        padding-top: 10px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 5px 0px rgb(20, 122, 126);
     }
     .enUni{
         display: none;
@@ -60,24 +64,27 @@ function sem($sema,$s,$por){
 
 
             foreach ($rows as $key => $value) {
+              if ($value[0] != "unidad 0") {
 
 
 
         ?>  
+   
+    <input type="hidden" id="CU" name="" value="<?php echo $value[1]?>">
+    <input type="hidden" class="idunidad<?php echo $conta; ?>" value="<?php echo $value[1]; ?>">
+
+      <div class="codunidad01 tamañodeuni01 rows"   id="<?php echo $conta+20; ?>">
+        <p class="col-md-3">Unidad <?php echo $conta-10; ?> : </p>
+        <h4 id="hola" class="col-md-7" style="text-align: center; margin-top: -0px;">
+            <a style="text-decoration: none; color:black" href="#<?php echo $conta; ?>" >
+                <p title="abrir unidad" data-toggle="modal" data-target="#myModal2"><?php echo utf8_encode($value[0]); ?></p>
+            </a>
+        </h4>
+      <p class="eli col-md-2" onclick="eliUni(<?php echo $value[1]?>)" title="eliminar unidad"><i class="fa fa-trash-o"></i></p>
+      </div>
 <br>
 
-<div class="panel panel-default col-md-12  "  >
-    <p class="col-md-3" style="width: 18%;">UNIDAD <?php echo $conta-10; ?> : </p>
-    <div class="panel-heading codunidad tamañodeuni col-md-8"   id="<?php echo $conta+20; ?>">
-    <input type="hidden" class="idunidad<?php echo $conta; ?>" value="<?php echo $value[1]; ?>">
-                <h4 class="panel-title" id="hola" style="text-align: center; " >
-                    <a data-toggle="collapse"  data-parent="#accordion" style="text-decoration: none; font-size: 11px"
-                     href="#<?php echo $conta; ?>" >
-                        <p class="col-md-12" title="abrir unidad" data-toggle="modal" data-target="#myModal2"><?php echo utf8_encode($value[0]); ?></p>
-                    </a>
-                    
-                </h4>
-        <table class="table enUni" id="en<?php echo $conta; ?>">
+    <table class="table enUni" id="en<?php echo $conta; ?>">
             <input type="hidden" id="idunik" value="<?php echo $value[1]?>" />            
             <thead>
               <tr>
@@ -111,12 +118,8 @@ function sem($sema,$s,$por){
               </tr>
             </tbody>
         </table>
-    </div>
-    <input type="hidden" id="CU" name="" value="<?php echo $value[1]?>">
-<p class="col-md-1 eli" onclick="eliUni(<?php echo $value[1]?>)" title="eliminar unidad"><i class="fa fa-trash-o"></i></p>
-</div>
 
-<?php $conta = $conta + 1;}?>
+<?php $conta = $conta + 1;} }?>
 
 <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
    <div class="modal-dialog" style=" width: 90%;">
@@ -131,11 +134,10 @@ function sem($sema,$s,$por){
 
         </div>
          <div class="modal-body2">
-            <div class="panel-body temas"></div>
+            <div class="panel-body temas"  style="overflow: scroll; height: 300px;"></div>
          </div>
         <div class="kmodal-footer" style="text-align: left;">
             <h4>EVALUACIÓN</h4> 
-            
             <div class="evaluacion"></div>
          </div>
       </div>
@@ -185,8 +187,8 @@ function eliUni(id){
 $(document).ready(function(){
 
 
-var tamañodeuni= $(".tamañodeuni").length;
-$('.codunidad').live("click",function(){
+var tamañodeuni= $(".tamañodeuni01").length;
+$('.codunidad01').live("click",function(){
         tip= $(this).attr('id');
         for ( y = 11; y <= (parseInt(tamañodeuni)+10); y++) {
         if (y == (parseInt(tip)-20)) {

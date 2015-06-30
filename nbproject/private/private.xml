@@ -2,13 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/xampp/htdocs/sisacreditacion/model/evento_proyeccion_social.php</file>
-            <file>file:/C:/xampp/htdocs/sisacreditacion/controller/eventoEUController.php</file>
-            <file>file:/C:/xampp/htdocs/sisacreditacion/controller/evento_proyeccion_socialController.php</file>
-            <file>file:/C:/xampp/htdocs/sisacreditacion/controller/asistenciaseventoEUController.php</file>
-            <file>file:/C:/xampp/htdocs/sisacreditacion/model/asistenciaseventoEU.php</file>
-            <file>file:/C:/xampp/htdocs/sisacreditacion/controller/asistenciaalumnoController.php</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

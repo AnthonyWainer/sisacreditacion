@@ -655,6 +655,13 @@ public function ListaPdf_ps($idevento) {
               $data['rows_notas_tutoria'][$value['CodigoAlumno']] = array('nota_tutoria'=>$this->mostrar_nota_tutoria(array('CodigoAlumno'=>$value['CodigoAlumno'],'CodigoSemestre'=>$obj->criterio1)));
             
         }
+//        foreach ( $data['notas_py'] as $key2 => $value2){
+//            //foreach al alumno(rows) para recontruir el array de rows_notas_tutoria 
+//            print_r( $value2);exit;
+////              $data['rows_notas_py'][$value2['CodigoAlumno']] = $value2;
+//        }
+//        print_r( $data['rows_notas_py']);exit;
+        
 //       echo "<div align='left'><pre>"; print_r( $data['rows_notas_tutoria']);echo "</div>";exit;
         
 //        $data['name'] = $p['name'];

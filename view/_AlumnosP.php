@@ -14,6 +14,7 @@
         border: none;
     }
 </style>
+<input type="hidden" id="p_idproyecto" name="p_idproyecto" value="<?= $p_idproyecto?>">
 <table class="table table-bordered table-hover" >
                     <thead >
                         <tr>

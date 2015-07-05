@@ -272,7 +272,7 @@ function getDetalle_evento_eu() {
     }
 
     public function getNotaspy(){
-     $query="SELECT *from detalle_concepto_detproyecto INNER JOIN concepto on (concepto.idconcepto=detalle_concepto_detproyecto.idconcepto) where CodigoSemestre='{$this->criterio1}'";
+     $query="SELECT *from detalle_concepto_detproyecto INNER JOIN concepto on (concepto.idconcepto=detalle_concepto_detproyecto.idconcepto) where CodigoSemestre='{$this->criterio1}' and estado_envio='1'";
         $sth = $this->db->prepare($query);   
      $sth->execute();
      return $sth->fetchAll();
@@ -471,6 +471,67 @@ Inner Join evento ON evento.idevento = detalle_asistencia_alumno_tutoria.idevent
 
         return $sth->fetchAll();
     }
+    function porcentaje_eventos_tutoria_proyectos() {
+        $query_tutoria = "SELECT 
+                        E.descripcionevaluacion,
+                        E.fecha,
+                        E.ponderado,
+                        E.idevaluacion,
+                        CA.CodigoCurso,
+                        CA.CodigoSemestre,
+                        C.DescripcionCurso,
+                       TE.descripcion,
+                       U.nombreunidad,
+                       U.idunidad,
+                       E.estadoBoton
+                        from evaluacion as E
+                        inner join unidad as U on U.idunidad = E.idunidad
+                        inner join silabus as S on S.idsilabus = U.idsilabus
+                        inner join carga_academica as CA on CA.idcargaacademica = S.idcargaacademica
+                        inner join cursos as C on C.CodigoCurso = CA.CodigoCurso
+                       inner join tipo_evaluacion as TE  on E.idtipo_evaluacion=TE.idtipo_evaluacion
+
+                                WHERE CA.{$this->filtro}= '{$this->criterio}' AND CA.{$this->filtro1}='{$this->criterio1}'
+                                    and TE.idtipo_evaluacion = 7
+                        ";
+$query_proy = "SELECT 
+                        E.descripcionevaluacion,
+                        E.fecha,
+                        E.ponderado,
+                        E.idevaluacion,
+                        CA.CodigoCurso,
+                        CA.CodigoSemestre,
+                        C.DescripcionCurso,
+                       TE.descripcion,
+                       U.nombreunidad,
+                       U.idunidad,
+                       E.estadoBoton
+                        from evaluacion as E
+                        inner join unidad as U on U.idunidad = E.idunidad
+                        inner join silabus as S on S.idsilabus = U.idsilabus
+                        inner join carga_academica as CA on CA.idcargaacademica = S.idcargaacademica
+                        inner join cursos as C on C.CodigoCurso = CA.CodigoCurso
+                       inner join tipo_evaluacion as TE  on E.idtipo_evaluacion=TE.idtipo_evaluacion
+
+                                WHERE CA.{$this->filtro}= '{$this->criterio}' AND CA.{$this->filtro1}='{$this->criterio1}'
+                                    and TE.idtipo_evaluacion = 6
+                        ";
+
+        $sth = $this->db->prepare($query_tutoria);
+        
+        $sth->bindValue(':criterio', $this->criterio, PDO::PARAM_STR);
+        $sth->bindValue(':criterio1', $this->criterio1, PDO::PARAM_STR);
+        $sth->execute();
+         $tutoria=$sth->fetch();
+         
+        $sth2 = $this->db->prepare($query_proy);
+        $sth2->bindValue(':criterio', $this->criterio, PDO::PARAM_STR);
+        $sth2->bindValue(':criterio1', $this->criterio1, PDO::PARAM_STR);
+        $sth2->execute();
+         $proyectos=$sth2->fetch();
+         
+         return array('tutoria'=>$tutoria,'proyectos_investigacion'=>$proyectos);
+    }
 
     function getListaA() {
         $query = "SELECT 
@@ -574,6 +635,7 @@ Inner Join evento ON evento.idevento = detalle_asistencia_alumno_tutoria.idevent
 //        exit();
         return $sth->fetchAll();
     }
+    
     function getSyllabus_P4() {
         $query = "SELECT 
                         TE.descripcion, E.ponderado,
@@ -1498,12 +1560,9 @@ function getDatos_grilla_solicitudes_eu() {
                     INNER JOIN alumnos ON alumnos.CodigoAlumno = detalleproyecto_matrixalumno.CodigoAlumno
                     where   detalleproyecto_matrixalumno.idproyecto='{$this->criterio}'AND  detalleproyecto_matrixalumno.estado=1
                     ";
-
         $sth = $this->db->prepare($query);
         $sth->bindValue(':criterio', $this->criterio, PDO::PARAM_INT);
-
         $sth->execute();
-
         return $sth->fetchAll();
     }
 

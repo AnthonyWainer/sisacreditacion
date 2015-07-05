@@ -86,6 +86,15 @@ class notasproyectoController extends Controller {
         $obj->actualiza($_POST);
         
     }
+    public function Enviar_Notas_Finales(){
+        $main=new Main();
+        $main->criterio = $_REQUEST['idproyecto'];
+        $alumnos=$main->getDatos_grilla_alumnos();
+        $obj = new notasproyecto();
+       $resp= $obj->Enviar_notas_finales($alumnos,$_REQUEST['idproyecto']);
+        echo json_encode($resp);
+        
+    }
     public function delete(){
         $obj = new notasproyecto();
         $p = $obj->delete($_GET['id']);

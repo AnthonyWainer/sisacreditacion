@@ -111,7 +111,7 @@
 														 if (($value[0]==$alum) && ($value[2]==$ie)){
 															if ($noe == "Proyecto de Investigacion") { 
                                                                                                                             //colocar nota de Proyecto de investigacion 
-                                                                                                                                       $nota_proy_i= $rows_notas_py[$alum]['nota'] ;if(empty($nota_proy_i)){echo "<span class='colorD'>0</span>";}else{echo"<span class='colorA'> ".$nota_proy_i."</span>";} ?>
+                                                                                                                                       $nota_proy_i= $rows_notas_py[$alum]['nota'] ;if(empty($nota_proy_i)){echo "<span class='colorD'>0</span>";}else{if($nota_proy_i<=10){echo "<span class='colorD'>0</span>";}else{echo"<span class='colorA'> ".round($nota_proy_i)."</span>";}} ?>
 			
 																<input type="hidden" id="0"/>		
 																 	

@@ -2087,6 +2087,38 @@ function getDatos_grilla_solicitudes_eu() {
         return $sth->fetch();
     }
 
+    public function mostrar_record_asistencias_Ps() {
+
+        $data_sub_Eu_Ps = $this->get_data_sub_eventos_Eu_Ps();
+        $fields = array();
+        foreach ($data_sub_Eu_Ps as $key => $value) {
+            array_push($fields, $value['idevento']);
+        }
+        $todos_idsuventos = implode(",", $fields);
+
+        $sql = "SELECT
+        detalle_asistencia_alumno.CodigoAlumno, 
+       alumnos.CodAlumnoSira,
+        detalle_asistencia_alumno.idevento,
+        CONCAT (' ',alumnos.NombreAlumno,alumnos.ApellidoPaterno,alumnos.ApellidoMaterno) as Nombre,
+       Sum(case when detalle_asistencia_alumno.asistencia_alumno =1 then 1 else 0  end) AS cant_asistencias,
+       Sum(case when detalle_asistencia_alumno.asistencia_alumno is NULL then 1 else 0 end) AS cant_inasistencias,
+        evento.tema,
+        evento.idtipo_evento,
+        cargo_asistencia_evento.descripcion as cargo
+        FROM
+        detalle_asistencia_alumno
+        INNER JOIN alumnos ON detalle_asistencia_alumno.CodigoAlumno = alumnos.CodigoAlumno
+        INNER JOIN evento ON detalle_asistencia_alumno.idevento = evento.idevento
+        INNER JOIN tipo_evento ON evento.idtipo_evento = tipo_evento.idtipo_evento
+        INNER JOIN cargo_asistencia_evento ON detalle_asistencia_alumno.id_cargo = cargo_asistencia_evento.id_cargo
+        WHERE evento.idevento in ('".$todos_idsuventos."') AND (detalle_asistencia_alumno.CodigoAlumno='{$this->CodigoAlumno}' or alumnos.CodAlumnoSira='{$this->CodAlumnoSira}')";
+//       echo $sql,exit;
+        $sth = $this->db->prepare($sql);
+        $sth->execute();
+//        echo "<pre>";print_r($sth->fetch());exit;
+        return $sth->fetch();
+    }
     public function mostrar_record_asistencias_Eu_Ps() {
 
         $data_sub_Eu_Ps = $this->get_data_sub_eventos_Eu_Ps();
@@ -2136,6 +2168,24 @@ function getDatos_grilla_solicitudes_eu() {
         FROM
         evento
         WHERE evento.CodigoSemestre='{$this->CodigoSemestre}' and evento.idevento_padre is not null and (evento.idtipo_evento=3  or evento.idtipo_evento=4)";
+        $sth = $this->db->prepare($sql);
+        $sth->execute();
+        return $sth->fetchAll();
+    }
+    function get_data_sub_eventos_Ps($param) {
+        $sql = "SELECT *
+        FROM
+        evento
+        WHERE evento.CodigoSemestre='{$this->CodigoSemestre}' and evento.idevento_padre is not null and (evento.idtipo_evento=3)";
+        $sth = $this->db->prepare($sql);
+        $sth->execute();
+        return $sth->fetchAll();
+    }
+    function get_data_sub_eventos_Eu($param) {
+        $sql = "SELECT *
+        FROM
+        evento
+        WHERE evento.CodigoSemestre='{$this->CodigoSemestre}' and evento.idevento_padre is not null and (evento.idtipo_evento=4)";
         $sth = $this->db->prepare($sql);
         $sth->execute();
         return $sth->fetchAll();

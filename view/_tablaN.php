@@ -109,16 +109,22 @@
 													 foreach ($rows3 as $key => $value) { 
 													 	 
 														 if (($value[0]==$alum) && ($value[2]==$ie)){
-															if ($noe == "Proyecto de Investigacion") { ?>
-																	<!-- colocar nota de Proyecto de investigacion -->
+															if ($noe == "Proyecto de Investigacion") { 
+                                                                                                                            //colocar nota de Proyecto de investigacion 
+                                                                                                                                       $nota_proy_i= $rows_notas_py[$alum]['nota'] ;if(empty($nota_proy_i)){echo "<span class='colorD'>0</span>";}else{echo"<span class='colorA'> ".$nota_proy_i."</span>";} ?>
+			
 																<input type="hidden" id="0"/>		
 																 	
 													 		<?php	}else{
-													 		if ($noe == "Eventos de Tutoria") {?>
+													 		if ($noe == "Eventos de Tutoria") {
+                                                                                                                             $nota_tutoria=$rows_notas_tutoria[$alum]['nota_tutoria'];if(is_numeric($nota_tutoria)) {if($nota_tutoria<=10){echo"<span class='colorD'> ".$nota_tutoria."</span>";}else{echo"<span class='colorA'> ".$nota_tutoria."</span>";}}else{echo "<span class='colorD'>0</span>";}
+                                                                                                                            ?>
 													 				<!-- colocar nota de tutoria -->
 																<input type="hidden" id="0"/>
 													 		<?php }else{
-													 			if ($noe == "Identificacion Institucional") {?>
+													 			if ($noe == "Identificacion Institucional") {
+                                                                                                                                    echo $rows_notas_identificacion_insti[$alum]['nota_i_i'];
+                                                                                                                                    ?>
 													 				<!-- colocar nota de identificacion institucional -->
 													 				<input type="hidden" id="0"/>
 													 		<?php }else{

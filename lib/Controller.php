@@ -649,10 +649,11 @@ public function ListaPdf_ps($idevento) {
         $data['notas_py']=$obj->getNotaspy();
         $data['rows4'] = $obj->getSyllabus_P3();
         //$data['eval'] = $obj->getEvaluacion3();
-        $porcent_tutoria_proyectos=$obj->porcentaje_eventos_tutoria_proyectos();
+        $obj->porcentaje_eventos_tutoria_proyectos();
         foreach ( $data['rows'] as $key => $value){
             //foreach al alumno(rows) para recontruir el array de rows_notas_tutoria 
-              $data['rows_notas_tutoria'][$value['CodigoAlumno']] = array('nota_tutoria'=>$this->mostrar_nota_tutoria(array('CodigoAlumno'=>$value['CodigoAlumno'],'CodigoSemestre'=>$obj->criterio1,'ponderados'=>$porcent_tutoria_proyectos)));
+              $data['rows_notas_tutoria'][$value['CodigoAlumno']] = array('nota_tutoria'=>$this->mostrar_nota_tutoria(array('CodigoAlumno'=>$value['CodigoAlumno'],'CodigoSemestre'=>$obj->criterio1)));
+              $data['rows_notas_identificacion_insti'][$value['CodigoAlumno']] = array('nota_i_i'=>$this->mostrar_nota_proyeccion_universitaria(array('CodigoAlumno'=>$value['CodigoAlumno'],'CodigoSemestre'=>$obj->criterio1)));
             
         }
         foreach ( $data['notas_py'] as $key2 => $value2){
@@ -1562,6 +1563,26 @@ public function grilla_miproyecto2($p) {
         $view->setTemplate('../view/_Select.php');
         return $view->renderPartial();
     }
+    
+    public function mostrar_nota_proyeccion_universitaria($p) {
+        $obj = new Main();
+        if (empty($p['CodigoSemestre'])) {
+            $obj->CodigoSemestre = $this->mostrar_semestre_ultimo();
+        } else {
+            $obj->CodigoSemestre = $p['CodigoSemestre'];
+        }
+        $obj->CodigoAlumno = $p['CodigoAlumno'];
+        $obj->CodAlumnoSira = $p['CodAlumnoSira'];
+           $data_Eu_Ps = $obj->mostrar_record_asistencias_Eu_Ps();
+           if (!empty($data_Ps['CodigoAlumno'])) { // si exite asistencias para ps y eu se saka sus notas
+               $cant_total_Eu_ps = $data_Eu_Ps['cant_asistencias'] + $data_Eu_Ps['cant_inasistencias'];
+               $nota_Eu_ps = ($data_Eu_Ps['cant_asistencias'] / $cant_total_Eu_ps) * 20;
+                return round($nota_Eu_ps) ;
+            } else { 
+              return 0;
+            }
+    }
+    
      public function mostrar_nota_tutoria($p) {
         $obj = new Main();
         if (empty($p['CodigoSemestre'])) {
@@ -1569,8 +1590,30 @@ public function grilla_miproyecto2($p) {
         } else {
             $obj->CodigoSemestre = $p['CodigoSemestre'];
         }
-        $ponderados=$p['ponderados'];
-//echo "aki".$ponderados['tutoria']['ponderado'];exit;
+        $obj->CodigoAlumno = $p['CodigoAlumno'];
+        $obj->CodAlumnoSira = $p['CodAlumnoSira'];
+        $data = $obj->mostrar_record_asistencias_tutoria();
+//       echo "<pre>"; print_r($data_Eu_Ps);exit;
+        if (empty($data['CodigoAlumno'])) {
+            return "No Se Encontro El Alumno Asignado o el Semestre como Parametros";
+        } else {
+
+               $cant_total_tutoria = $data['cant_asistencias'] + $data['cant_inasistencias'];
+               $nota_tutoria = ($data['cant_asistencias'] / $cant_total_tutoria) * 20;
+                return round($nota_tutoria) ;
+        }
+    }
+    
+    /*
+      public function mostrar_nota_tutoria($p) {
+        $obj = new Main();
+        if (empty($p['CodigoSemestre'])) {
+            $obj->CodigoSemestre = $this->mostrar_semestre_ultimo();
+        } else {
+            $obj->CodigoSemestre = $p['CodigoSemestre'];
+        }
+//        $ponderados=$p['ponderados'];
+//          echo "aki".$ponderados['tutoria']['ponderado'];exit;
         $obj->CodigoAlumno = $p['CodigoAlumno'];
         $obj->CodAlumnoSira = $p['CodAlumnoSira'];
         $data = $obj->mostrar_record_asistencias_tutoria();
@@ -1580,7 +1623,6 @@ public function grilla_miproyecto2($p) {
             return "No Se Encontro El Alumno Asignado o el Semestre como Parametros";
         } else {
             if (!empty($data_Eu_Ps['CodigoAlumno'])) { // si exite asistencias para eu y ps se saka sus notas, tambien de tutoria
-
                 $cant_total_Eu_ps = $data_Eu_Ps['cant_asistencias'] + $data_Eu_Ps['cant_inasistencias'];
               
                 $nota_Eu_ps = ($data_Eu_Ps['cant_asistencias'] / $cant_total_Eu_ps) * 20;
@@ -1590,8 +1632,8 @@ public function grilla_miproyecto2($p) {
 //               echo $nota_Eu_ps;exit;
 //               echo $data_Eu_Ps['cant_asistencias'].','.$data_Eu_Ps['cant_inasistencias'];exit;
 //               echo $data['cant_asistencias'].','.$data['cant_inasistencias'];exit;
-//                return round($nota = ($nota_Eu_ps+ $nota_tutoria)/2) ;
-            return round($nota = ($nota_Eu_ps*($ponderados['proyectos_investigacion']['ponderado']/100)+ $nota_tutoria*($ponderados['proyectos_investigacion']['tutoria']/100))) ;
+                return round($nota = ($nota_Eu_ps+ $nota_tutoria)/2) ;
+//            return round($nota = ($nota_Eu_ps*($ponderados['proyectos_investigacion']['ponderado']/100)+ $nota_tutoria*($ponderados['proyectos_investigacion']['tutoria']/100))) ;
 //              return $nota = round((($data_Eu_Ps['cant_asistencias']+ $data['cant_asistencias'])/($cant_total_Eu_ps+$cant_total_tutoria))*20) ;
                 
             } else { //solo nota tutoria por que no tiene eu y ps
@@ -1602,6 +1644,7 @@ public function grilla_miproyecto2($p) {
             }
         }
     }
+     */
 
 
 }

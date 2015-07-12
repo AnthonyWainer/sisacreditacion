@@ -1574,9 +1574,9 @@ public function grilla_miproyecto2($p) {
         $obj->CodigoAlumno = $p['CodigoAlumno'];
         $obj->CodAlumnoSira = $p['CodAlumnoSira'];
            $data_Eu_Ps = $obj->mostrar_record_asistencias_Eu_Ps();
-           if (!empty($data_Ps['CodigoAlumno'])) { // si exite asistencias para ps y eu se saka sus notas
+           if (!empty($data_Eu_Ps['CodigoAlumno'])) { // si exite asistencias para ps y eu se saka sus notas
                $cant_total_Eu_ps = $data_Eu_Ps['cant_asistencias'] + $data_Eu_Ps['cant_inasistencias'];
-               $nota_Eu_ps = ($data_Eu_Ps['cant_asistencias'] / $cant_total_Eu_ps) * 20;
+               $nota_Eu_ps = ($data_Eu_Ps['cant_asistencias'] / $cant_total_Eu_ps) * 20;               
                 return round($nota_Eu_ps) ;
             } else { 
               return 0;

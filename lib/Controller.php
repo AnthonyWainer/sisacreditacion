@@ -910,8 +910,10 @@ public function ListaPdf_ps($idevento) {
         $data['rows'] = $obj->getSyllabus_P5();
         $data['rows1'] = $obj->getNotasPro2();
         $data['disabled'] = $p['disabled'];
+       
         $view = new View();
         $view->setData($data);
+
 
         $view->setTemplate('../view/_tablaM.php');
 

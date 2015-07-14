@@ -60,11 +60,11 @@
                             <?php } ?>
                      <?php }  ?>
 
-                <td> <?php echo (int)($p/$a); ?></td>
-                <td><?=$nota_tutoria?>
+                <td> <input type="hidden" id="nota_py" value="<?= (int)($p/$a);?>"><?php echo (int)($p/$a); ?></td>
+                <td><input type="hidden" id="nota_t" value="<?= $nota_tutoria?>"><?=$nota_tutoria;?>
                     <input type="hidden" value="0">
                 </td>
-                <td><?=$rows_nota_identificacion_insti?>
+                <td><input type="hidden" id="nota_ii" value="<?=$rows_nota_identificacion_insti;?>"><?=$rows_nota_identificacion_insti;?>
                     <input type="hidden" value="0">
                 </td>
 
@@ -92,15 +92,20 @@ function rangoNumeros(nro,input){
           alertify.log("por favor ingrese un numero mayor igual a '0' o menor igual a '20'");
         }
 }
-    nroColumnas= $(".ola tbody tr td").length-3;
+    nroColumnas= $(".ola tbody tr td").length-4;
     a=0;
     for (var i = 1; i <= nroColumnas; i++) {
         nota = $('#A'+i).val();
         por= parseFloat($('#A'+i).attr('name'));
         por2= parseFloat($('#A'+i).attr('namee'));
         a+= parseInt(( nota * por * por2 )/10000);
+        
     }
-    $('#total').text(a);
+     nota_py=$("#nota_py").val();
+     nota_t=$("#nota_t").val();
+     nota_ii=$("#nota_ii").val();
+     p_=(eval(nota_py)+eval(nota_t)+eval(nota_ii))/3; 
+    $('#total').text((a*0.9+p_*0.1).toFixed(0));
 
     $(".as").blur(function(){
         nroColumnas= $(".ola tbody tr td").length-3;

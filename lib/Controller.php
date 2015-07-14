@@ -910,12 +910,15 @@ public function ListaPdf_ps($idevento) {
         $data['rows'] = $obj->getSyllabus_P5();
         $data['rows1'] = $obj->getNotasPro2();
         $data['disabled'] = $p['disabled'];
+
         
 //        $data['nota_py']=$obj->getNotaspy_this_alumno();
         $data['nota_tutoria'] = $this->mostrar_nota_tutoria(array('CodigoAlumno'=>$obj->criterio2,'CodigoSemestre'=>$obj->criterio));
          $data['rows_nota_identificacion_insti'] = $this->mostrar_nota_proyeccion_universitaria(array('CodigoAlumno'=>$obj->criterio2,'CodigoSemestre'=>$obj->criterio));
+
         $view = new View();
         $view->setData($data);
+
 
         $view->setTemplate('../view/_tablaM.php');
 

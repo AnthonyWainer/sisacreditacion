@@ -30,15 +30,17 @@
         <table class="table table-hover table-bordered ola" >
             <thead>
                 <tr>
-                <?php foreach ($rows as $key => $value) {?>
+                <?php  foreach ($rows as $key => $value) {?>
                 <th> <?php echo $value[0]; ?> 
                     
                 </th>
                 
                 <?php } ?>
+
                 <th>PI</th>
                 <th>TUTORIA</th>
                 <th>Identifi. Institu</th>
+
                 <th>NOTA FINAL</th>
                 </tr>
                 
@@ -57,6 +59,7 @@
                              <?php  $a++;  $p += (int)$value1[1]; ?>
                             <?php } ?>
                      <?php }  ?>
+
                 <td> <?php echo (int)($p/$a); ?></td>
                 <td><?=$nota_tutoria?>
                     <input type="hidden" value="0">
@@ -64,6 +67,7 @@
                 <td><?=$rows_nota_identificacion_insti?>
                     <input type="hidden" value="0">
                 </td>
+
                 <td id="total" >
                     
                 </td>

@@ -117,7 +117,7 @@
 																 	
 													 		<?php	}else{
 													 		if ($noe == "Eventos de Tutoria") {
-                                                                                                                             $nota_tutoria=$rows_notas_tutoria[$alum]['nota_tutoria'];if(is_numeric($nota_tutoria)) {if($nota_tutoria<=10){echo"<span class='colorD'> ".$nota_tutoria."</span>";}else{echo"<span class='colorA'> ".$nota_tutoria."</span>";}}else{echo "<span class='colorD'>0</span>";}
+                                                              $nota_tutoria=$rows_notas_tutoria[$alum]['nota_tutoria'];if(is_numeric($nota_tutoria)) {if($nota_tutoria<=10){echo"<span class='colorD'> ".$nota_tutoria."</span>";}else{echo"<span class='colorA'> ".$nota_tutoria."</span>";}}else{echo "<span class='colorD'>0</span>";}
                                                                                                                             ?>
 													 				<!-- colocar nota de tutoria -->
 																<input type="hidden" id="0"/>

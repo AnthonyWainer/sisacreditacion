@@ -277,6 +277,15 @@ function getDetalle_evento_eu() {
      $sth->execute();
      return $sth->fetchAll();
     }
+    
+    public function getNotaspy_this_alumno(){
+     $query="SELECT * from detalle_concepto_detproyecto INNER JOIN concepto on (concepto.idconcepto=detalle_concepto_detproyecto.idconcepto) where CodigoSemestre='{$this->criterio}' and estado_envio='1' and CodigoAlumno='{$this->criterio2}'";
+       $sth = $this->db->prepare($query);   
+     $sth->execute();
+     $data= $sth->fetchAll();
+     print_r($data);exit;
+       
+    }
     function getRetornoN() {
 
         $query = "SELECT 

@@ -38,6 +38,7 @@
                 <?php } ?>
                 <th>PI</th>
                 <th>TUTORIA</th>
+                <th>Identifi. Institu</th>
                 <th>NOTA FINAL</th>
                 </tr>
                 
@@ -57,7 +58,10 @@
                             <?php } ?>
                      <?php }  ?>
                 <td> <?php echo (int)($p/$a); ?></td>
-                <td>
+                <td><?=$nota_tutoria?>
+                    <input type="hidden" value="0">
+                </td>
+                <td><?=$rows_nota_identificacion_insti?>
                     <input type="hidden" value="0">
                 </td>
                 <td id="total" >
